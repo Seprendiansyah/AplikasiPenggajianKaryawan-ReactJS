@@ -8,6 +8,7 @@ import PageKaryawanCreate from "./pages/karyawan/PageKaryawanCreate.jsx";
 import PagePotonganCreate from "./pages/potongan/PagePotonganCreate.jsx";
 import PagePotonganList from "./pages/potongan/PagePotonganList.jsx";
 import PagePotonganDetail from "./pages/potongan/PagePotonganDetail.jsx";
+import PageKaryawanDetail from "./pages/karyawan/PageKaryawanDetail.jsx";
 // import PageBarangList from "./pages/barang/PageBarangList.jsx";
 // import PageBarangCreate from "./pages/barang/PageBarangCreate.jsx";
 // import PageBarangDetail from "./pages/barang/PageBarangDetail.jsx";
@@ -29,7 +30,7 @@ const App = () => {
             <Route path="/" element={<PageCommonOutlet />}>
               <Route index={true} element={<PageKaryawanList />} />
               <Route path={"new"} element={<PageKaryawanCreate />} />
-              {/* <Route path={"detail/:id"} element={<PageBarangDetail />} /> */}
+              <Route path={"detail/:id"} element={<PageKaryawanDetail />} />
             </Route>
             <Route path="/potongan" element={<PageCommonOutlet />}>
               <Route index={true} element={<PagePotonganList />} />

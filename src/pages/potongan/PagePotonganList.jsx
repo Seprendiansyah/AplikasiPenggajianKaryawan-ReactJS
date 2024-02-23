@@ -88,7 +88,7 @@ const PagePotonganList = () => {
                 {daftarPotongan.map((value) => (
                   <tr key={value._id}>
                     <td>
-                      <Link to={`/detail/${value._id}`} className={"text-decoration-none"}>{value._id}</Link>
+                      <Link to={`/potongan/detail/${value._id}`} className={"text-decoration-none"}>{value._id}</Link>
                     </td>
                     <td>{value.nama}</td>
                     <td>{value.potongan}</td>
