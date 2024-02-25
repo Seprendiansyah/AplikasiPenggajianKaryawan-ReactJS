@@ -15,7 +15,7 @@ const PageKaryawanCreate = () => {
   const jwt = useJWT();
   const message = useMessage();
 
-  const [karyawan, setKaryawan] = useState([])
+  const [karyawan, setKaryawan] = useState({})
   const karyawanChangeListener = useChangeListener();
   const karyawanValidator = useValidator([])
 

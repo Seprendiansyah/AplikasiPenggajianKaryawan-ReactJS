@@ -12,13 +12,13 @@ import useMessage from '../../src/libs/hooks/useMessage.jsx';
 import useChangeListener from '../../src/libs/hooks/useChangeListener.jsx';
 import useValidator from '../../src/libs/hooks/useValidator.jsx';
 
-const usersInit = {
-  username: "",
+const userInit = {
+  email: "",
   password: ""
 }
 
-const usersValidatorInit = {
-  username: [],
+const userValidatorInit = {
+  email: [],
   password: []
 }
 
@@ -29,31 +29,42 @@ const WidgetUsersSignInModal = () => {
   const message = useMessage();
   const changeListener = useChangeListener();
 
-  const [users, setUsers] = useState(usersInit);
-  const usersValidator = useValidator(usersValidatorInit);
+  const [user, setUser] = useState(userInit);
+  const userValidator = useValidator(userValidatorInit);
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  // const signIn = () => {
+  //   usersValidator.reset();
+
+  //   const url = `${BASE_URL}/users/signin/`;
+  //   http.publicHTTP.post(url, users)
+  //     .then((response) => {
+  //       jwt.set(response.data.access);
+  //       application.setIsAuthenticated(true);
+  //       message.success(response)
+  //     })
+  //     .catch((error) => {
+  //       message.error(error);
+  //       usersValidator.except(error)
+  //     });
+  // }
+
   const signIn = () => {
-    usersValidator.reset();
+    userValidator.reset();
 
-    const url = `${BASE_URL}/users/signin/`;
-
-    http.publicHTTP.post(url, users)
-      .then((response) => {
-        jwt.set(response.data.access);
-        application.setIsAuthenticated(true);
-        message.success(response)
-      })
-      .catch((error) => {
-        message.error(error);
-        usersValidator.except(error)
-      });
+    http.publicHTTP.post(`${BASE_URL}/users/signin/`, user).then((response) => {
+      jwt.set(response.data.token);
+      application.setIsAuthenticated(true);
+      message.success(response)
+    }).catch((error) => {
+      userValidator.except(error);
+      console.log(error)
+    })
   }
-
 
   return (
     <>
@@ -68,23 +79,23 @@ const WidgetUsersSignInModal = () => {
         </Modal.Header>
         <Modal.Body>
           <Form.Group className={"mb-3"}>
-            <Form.Label>Username</Form.Label>
+            <Form.Label>Email</Form.Label>
             <Form.Control
-              name={"username"}
-              value={users.username}
-              onChange={e => changeListener.onChangeText(e, users, setUsers)}
+              name={"email"}
+              value={user.email}
+              onChange={e => changeListener.onChangeText(e, user, setUser)}
             />
-            <ComponentMessageValidation messages={usersValidator.get('username')} />
+            <ComponentMessageValidation messages={userValidator.get('email')} />
           </Form.Group>
           <Form.Group className={"mb-3"}>
             <Form.Label>Password</Form.Label>
             <Form.Control
               name={"password"}
               type={"password"}
-              value={users.password}
+              value={user.password}
               onChange={e => changeListener.onChangeText(e, user, setUser)}
             />
-            <ComponentMessageValidation messages={usersValidator.get('password')} />
+            <ComponentMessageValidation messages={userValidator.get('password')} />
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>

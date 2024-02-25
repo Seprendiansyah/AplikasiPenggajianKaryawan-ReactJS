@@ -15,7 +15,7 @@ const LibComponentNavbar = () => {
   }
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary d-print-none">
+    <Navbar expand="lg" bg="dark" data-bs-theme="dark" className="d-print-none">
       <Container>
         <Navbar.Brand href="#">Penggajian Absensi</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

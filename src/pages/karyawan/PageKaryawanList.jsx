@@ -6,6 +6,7 @@ import useMessage from "../../libs/hooks/useMessage.jsx";
 import {BASE_URL} from "../../libs/config/settings.js";
 import useURLResolver from "../../libs/hooks/useURLResolver.jsx";
 import {Link, useNavigate} from "react-router-dom";
+import WidgetKaryawanCreateModal from "../../../widget/barang/WidgetKaryawanCreateModal.jsx";
 
 const PageKaryawanList = () => {
 
@@ -58,7 +59,8 @@ const PageKaryawanList = () => {
             <h3>Daftar Karyawan</h3>
           </Col>
           <Col className={"d-flex justify-content-end"}>
-            <Button onClick={() => navigate("new")}>New Karyawan</Button>
+            <WidgetKaryawanCreateModal callback={onKaryawanList} />
+            {/* <Button onClick={() => navigate("new")}>New Karyawan</Button> */}
           </Col>
         </Row>
         <Row className={"mb-4"}>
