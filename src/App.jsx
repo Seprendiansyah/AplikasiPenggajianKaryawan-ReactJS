@@ -15,9 +15,6 @@ import PagePotonganCreate from "./pages/potongan/PagePotonganCreate.jsx";
 import PagePotonganList from "./pages/potongan/PagePotonganList.jsx";
 import PagePotonganDetail from "./pages/potongan/PagePotonganDetail.jsx";
 import PageKaryawanDetail from "./pages/karyawan/PageKaryawanDetail.jsx";
-import PageDepartemenList from "./pages/departemen/PageDepartemenList.jsx";
-import PageDepartemenDetail from "./pages/departemen/PageDepartemenDetail.jsx";
-import PageDepartemenCreate from "./pages/departemen/PageDepartemenCreate.jsx";
 // import PageBarangList from "./pages/barang/PageBarangList.jsx";
 // import PageBarangCreate from "./pages/barang/PageBarangCreate.jsx";
 // import PageBarangDetail from "./pages/barang/PageBarangDetail.jsx";
@@ -45,11 +42,6 @@ const App = () => {
               <Route index={true} element={<PagePotonganList />} />
               <Route path={"potongan"} element={<PagePotonganCreate />} />
               <Route path={"detail/:id"} element={<PagePotonganDetail />} />
-            </Route>
-            <Route path="/departemen" element={<PageCommonOutlet />}>
-              <Route index={true} element={<PageDepartemenList/>} />
-              <Route path={"departemen"} element={<PageDepartemenCreate/>} />
-              <Route path={"detail/:id"} element={<PageDepartemenDetail />} />
             </Route>
             {/* <Route path="/kas" element={<PageCommonOutlet />}>
               <Route index={true} element={<PageKasList />} />
