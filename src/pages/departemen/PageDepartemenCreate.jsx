@@ -84,7 +84,7 @@ const PageDepartemenCreate = () => {
           <Col md={6} className={"d-flex justify-content-end gap-2"}>
             <Button
               variant={"outline-secondary"}
-              onClick={() => navigate("/potongan")}
+              onClick={() => navigate("/departemen")}
             >
               Batal
             </Button>

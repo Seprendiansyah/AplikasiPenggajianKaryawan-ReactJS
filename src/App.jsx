@@ -18,7 +18,6 @@ import PageKaryawanDetail from "./pages/karyawan/PageKaryawanDetail.jsx";
 import PageDepartemenList from "./pages/departemen/PageDepartemenList.jsx";
 import PageDepartemenCreate from "./pages/departemen/PageDepartemenCreate.jsx";
 import PageDepartemenDetail from "./pages/departemen/PageDepartemenDetail.jsx";
-import PageDepartemenPrint from "./pages/departemen/PageDepartemenPrint.jsx";
 import PagePenggajianList from "./pages/penggajian/PagePenggajianList.jsx";
 import PagePenggajianPrint from "./pages/penggajian/PagePenggajianPrint.jsx";
 // import PageBarangList from "./pages/barang/PageBarangList.jsx";
@@ -53,7 +52,6 @@ const App = () => {
               <Route index={true} element={<PageDepartemenList />} />
               <Route index={"departemen"} element={<PageDepartemenCreate />} />
               <Route index={"detail/:id"} element={<PageDepartemenDetail />} />
-              <Route index={"print"} element={<PageDepartemenPrint />} />
             </Route>
             <Route path="/penggajian" element={<PageCommonOutlet />}>
               <Route index={true} element={<PagePenggajianList />} />
