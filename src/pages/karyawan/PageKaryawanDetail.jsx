@@ -88,6 +88,16 @@ const PageKaryawanDetail = () => {
           <Col md={6}>
             <Card>
               <Card.Body>
+                
+                <Card.Subtitle className={"mb-3"}>NIK</Card.Subtitle>
+                <Form.Group className={"mb-3"}>
+                  <Form.Control
+                    className={"bg-body-tertiary"}
+                    value={karyawan.nik}
+                    name={"nik"}
+                    disabled
+                  />
+                </Form.Group>
                 <Card.Subtitle className={"mb-3"}>Nama Karyawan</Card.Subtitle>
                 <Form.Group className={"mb-3"}>
                   <Form.Control
@@ -99,6 +109,31 @@ const PageKaryawanDetail = () => {
                   />
                   <Form.Text>Harap form di isi dengan baik</Form.Text>
                   <ComponentMessageValidation messages={karyawanValidator.get('nama')} />
+                </Form.Group>
+                {JSON.stringify(karyawan.jabatan && karyawan.jabatan.gajiPokok ? karyawan.jabatan.gajiPokok :'')}
+                <Card.Subtitle className={"mb-3"}>Jabatan</Card.Subtitle>
+                <Form.Group className={"mb-3"}>
+                  <Form.Control
+                    className={"bg-body-tertiary"}
+                    value={karyawan.jabatan && karyawan.jabatan.nama ? karyawan.jabatan.nama : ''}
+                    disabled
+                  />
+                </Form.Group>
+                <Card.Subtitle className={"mb-3"}>Gaji Pokok</Card.Subtitle>
+                <Form.Group className={"mb-3"}>
+                  <Form.Control
+                    className={"bg-body-tertiary"}
+                    value={karyawan.jabatan && karyawan.jabatan.gajiPokok!==0 ? karyawan.jabatan.gajiPokok : 0}
+                    disabled
+                  />
+                </Form.Group>
+                <Card.Subtitle className={"mb-3"}>Tunjangan</Card.Subtitle>
+                <Form.Group className={"mb-3"}>
+                  <Form.Control
+                    className={"bg-body-tertiary"}
+                    value={karyawan.jabatan && karyawan.jabatan.tunjangan!==0 ? karyawan.jabatan.tunjangan : 0}
+                    disabled
+                  />
                 </Form.Group>
               </Card.Body>
               {/* <Card.Body>
