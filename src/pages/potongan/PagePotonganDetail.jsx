@@ -38,7 +38,7 @@ const PagePotonganDetail = () => {
 
     http.privateHTTP.put(`${BASE_URL}/potongan/${params.id}/`, potongan, config).then((response) => {
       message.success(response);
-      navigate("/")
+      navigate("/potongan")
     }).catch((error) => {
       message.error(error)
       potonganValidator.except(error)
@@ -55,7 +55,7 @@ const PagePotonganDetail = () => {
 
       http.privateHTTP.delete(`${BASE_URL}/potongan/${params.id}/`, config).then((response) => {
         message.success(response);
-        navigate("/")
+        navigate("/potongan")
       }).catch((error) => {
         message.error(error)
       })
@@ -128,7 +128,7 @@ const PagePotonganDetail = () => {
 
         <Row className={"d-flex justify-content-center"}>
           <Col md={6} className={"d-flex justify-content-end gap-2"}>
-            <Button variant={"outline-secondary"} onClick={() => navigate("/")}>Batal</Button>
+            <Button variant={"outline-secondary"} onClick={() => navigate("/potongan")}>Batal</Button>
             <Button variant={"outline-secondary"} onClick={onPotonganDelete}>Hapus</Button>
             <Button onClick={onPotonganUpdate}>Update</Button>
           </Col>
