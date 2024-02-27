@@ -110,7 +110,7 @@ const PageKaryawanDetail = () => {
                   <Form.Text>Harap form di isi dengan baik</Form.Text>
                   <ComponentMessageValidation messages={karyawanValidator.get('nama')} />
                 </Form.Group>
-                {JSON.stringify(karyawan.jabatan && karyawan.jabatan.gajiPokok ? karyawan.jabatan.gajiPokok :'')}
+                {JSON.stringify(karyawan)}
                 <Card.Subtitle className={"mb-3"}>Jabatan</Card.Subtitle>
                 <Form.Group className={"mb-3"}>
                   <Form.Control

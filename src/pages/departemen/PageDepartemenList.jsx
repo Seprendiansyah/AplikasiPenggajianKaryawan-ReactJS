@@ -96,7 +96,6 @@ const onPrintSlip = (id) => {
                 <tr>
                     <th>ID</th>
                     <th>Nama Departemen</th>
-                    <th>Print</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -107,7 +106,7 @@ const onPrintSlip = (id) => {
                       <Link to={`/departemen/detail/${value._id}`} className={"text-decoration-none"}>{value._id}</Link>
                     </td>
                     <td>{value.nama}</td>
-                    <td><Button onClick={() => onPrintSlip(value._id)} variant={"success"}>Print</Button></td>
+                    {/* <td><Button onClick={() => onPrintSlip(value._id)} variant={"success"}>Print</Button></td> */}
                   </tr>
                 ))}
                 </tbody>
