@@ -18,16 +18,7 @@ import PageKaryawanDetail from "./pages/karyawan/PageKaryawanDetail.jsx";
 import PageDepartemenList from "./pages/departemen/PageDepartemenList.jsx";
 import PageDepartemenCreate from "./pages/departemen/PageDepartemenCreate.jsx";
 import PageDepartemenDetail from "./pages/departemen/PageDepartemenDetail.jsx";
-import PageDepartemenPrint from "./pages/departemen/PageDepartemenPrint.jsx";
 import PagePenggajianList from "./pages/penggajian/PagePenggajianList.jsx";
-import PagePenggajianPrint from "./pages/penggajian/PagePenggajianPrint.jsx";
-// import PageBarangList from "./pages/barang/PageBarangList.jsx";
-// import PageBarangCreate from "./pages/barang/PageBarangCreate.jsx";
-// import PageBarangDetail from "./pages/barang/PageBarangDetail.jsx";
-// import PageTerimaList from "./pages/terima/PageTerimaList.jsx";
-// import PageTerimaPrint from "./pages/terima/PageTerimaPrint.jsx";
-// import PageKasList from "./pages/kas/PageKasList.jsx";
-// import PageTerimaAmbil from "./pages/terima/PageTerimaAmbil.jsx";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -41,7 +32,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<PageCommonOutlet />}>
               <Route index={true} element={<PageKaryawanList />} />
-              {/* <Route path={"new"} element={<PageKaryawanCreate />} /> */}
+              <Route path={"karyawan"} element={<PageKaryawanCreate />} />
               <Route path={"detail/:id"} element={<PageKaryawanDetail />} />
             </Route>
             <Route path="/potongan" element={<PageCommonOutlet />}>
@@ -56,7 +47,7 @@ const App = () => {
             </Route>
             <Route path="/penggajian" element={<PageCommonOutlet />}>
               <Route index={true} element={<PagePenggajianList />} />
-              <Route index={"penggajian"} element={<PagePenggajianPrint />} />
+              {/* <Route index={"penggajian"} element={<PagePenggajianPrint />} /> */}
             </Route>
           </Routes>
         </HashRouter>

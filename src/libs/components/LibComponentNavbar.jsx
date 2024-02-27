@@ -25,7 +25,6 @@ const LibComponentNavbar = () => {
               <Nav.Link href="#/">Karyawan</Nav.Link>
               <Nav.Link href="#potongan">Potongan</Nav.Link>
               <Nav.Link href="#departemen">Departemen</Nav.Link>
-              <Nav.Link href="#absensi">Absensi</Nav.Link>
               <Nav.Link href="#penggajian">Penggajian</Nav.Link>
               <Nav.Link onClick={signOut}>Log Out</Nav.Link>
             </Nav>

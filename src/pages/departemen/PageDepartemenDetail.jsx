@@ -1,16 +1,16 @@
-import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
-import {useNavigate, useParams} from "react-router-dom";
+import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
+import { useNavigate, useParams } from "react-router-dom";
 import useHTTP from "../../libs/hooks/useHTTP.jsx";
 import useJWT from "../../libs/hooks/useJWT.jsx";
 import useMessage from "../../libs/hooks/useMessage.jsx";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import useValidator from "../../libs/hooks/useValidator.jsx";
 import useChangeListener from "../../libs/hooks/useChangeListener.jsx";
-import {BASE_URL} from "../../libs/config/settings.js";
+import { BASE_URL } from "../../libs/config/settings.js";
 import ComponentMessageValidation from "../../libs/components/ComponentMessageValidation.jsx";
 
-const PageDepartemenDetail=()=>{
-    const params = useParams();
+const PageDepartemenDetail = () => {
+  const params = useParams();
   const navigate = useNavigate();
   const http = useHTTP();
   const jwt = useJWT();
@@ -21,7 +21,7 @@ const PageDepartemenDetail=()=>{
   })
   const departemenChangeListener = useChangeListener();
   const DepartemenValidator = useValidator({
-    namaDepartemen:[]
+    namaDepartemen: []
   });
 
   const onDepartemenUpdate = () => {
@@ -92,7 +92,6 @@ const PageDepartemenDetail=()=>{
               <Card.Body>
                 <Card.Subtitle className={"mb-3"}>Nama Departemen</Card.Subtitle>
                 <Form.Group className={"mb-3"}>
-                {JSON.stringify(departemen)}
                   <Form.Control
                     placeholder={"Masukkan Nama Departemen"}
                     className={"bg-body-tertiary"}
@@ -100,7 +99,7 @@ const PageDepartemenDetail=()=>{
                     name={"nama"}
                     onChange={(e) => departemenChangeListener.onChangeText(e, departemen, setDepartemen)}
                   />
-                  
+
                   <Form.Text>Harap form di isi dengan baik</Form.Text>
 
                   <ComponentMessageValidation messages={DepartemenValidator.get('nama')} />
@@ -109,7 +108,7 @@ const PageDepartemenDetail=()=>{
             </Card>
           </Col>
         </Row>
-        
+
 
         <Row className={"d-flex justify-content-center"}>
           <Col md={6} className={"d-flex justify-content-end gap-2"}>

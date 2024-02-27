@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Col, Container, Row, Table } from "react-bootstrap";
-import Barcode from "react-barcode";
+// import Barcode from "react-barcode";
 
 const PagePenggajianPrint = () => {
   const location = useLocation();
