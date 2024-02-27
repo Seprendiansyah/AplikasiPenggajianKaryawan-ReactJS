@@ -100,7 +100,9 @@ const PageDepartemenDetail=()=>{
                     name={"nama"}
                     onChange={(e) => departemenChangeListener.onChangeText(e, departemen, setDepartemen)}
                   />
+                  
                   <Form.Text>Harap form di isi dengan baik</Form.Text>
+
                   <ComponentMessageValidation messages={DepartemenValidator.get('nama')} />
                 </Form.Group>
               </Card.Body>

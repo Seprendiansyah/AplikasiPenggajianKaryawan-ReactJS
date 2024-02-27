@@ -5,7 +5,7 @@ import {useEffect, useRef, useState} from "react";
 import useMessage from "../../libs/hooks/useMessage.jsx";
 import {BASE_URL} from "../../libs/config/settings.js";
 import useURLResolver from "../../libs/hooks/useURLResolver.jsx";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, json, useNavigate} from "react-router-dom";
 
 const PageDepartemenList=()=>{
 const navigate = useNavigate();
@@ -41,7 +41,22 @@ const navigate = useNavigate();
         onDepartemenList({search: departemenSearch.current.value})
     }
   }
+//PRINT DISINI
+const onPrintSlip = (id) => {
+    const url = `${BASE_URL}/departemen/${id}/print/`;
+    const config = {
+      headers: {
+        Authorization: jwt.get()
+      },
+    }
 
+    http.privateHTTP.put(url, null, config).then((response) => {
+      onDepartemenList()
+      message.success(response)
+    }).catch((error) => {
+      message.error(error)
+    })
+  }
   const onDepartemenPagination = (page) => {
     onDepartemenList({search: departemenSearch.current.value, page})
   }
@@ -81,6 +96,7 @@ const navigate = useNavigate();
                 <tr>
                     <th>ID</th>
                     <th>Nama Departemen</th>
+                    <th>Print</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -91,6 +107,7 @@ const navigate = useNavigate();
                       <Link to={`/departemen/detail/${value._id}`} className={"text-decoration-none"}>{value._id}</Link>
                     </td>
                     <td>{value.nama}</td>
+                    <td><Button onClick={() => onPrintSlip(value._id)} variant={"success"}>Print</Button></td>
                   </tr>
                 ))}
                 </tbody>
