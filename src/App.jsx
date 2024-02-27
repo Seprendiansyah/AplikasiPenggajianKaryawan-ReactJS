@@ -16,16 +16,11 @@ import PagePotonganList from "./pages/potongan/PagePotonganList.jsx";
 import PagePotonganDetail from "./pages/potongan/PagePotonganDetail.jsx";
 import PageKaryawanDetail from "./pages/karyawan/PageKaryawanDetail.jsx";
 import PageDepartemenList from "./pages/departemen/PageDepartemenList.jsx";
-<<<<<<< HEAD
-import PageDepartemenDetail from "./pages/departemen/PageDepartemenDetail.jsx";
-import PageDepartemenCreate from "./pages/departemen/PageDepartemenCreate.jsx";
-=======
 import PageDepartemenCreate from "./pages/departemen/PageDepartemenCreate.jsx";
 import PageDepartemenDetail from "./pages/departemen/PageDepartemenDetail.jsx";
 import PageDepartemenPrint from "./pages/departemen/PageDepartemenPrint.jsx";
 import PagePenggajianList from "./pages/penggajian/PagePenggajianList.jsx";
 import PagePenggajianPrint from "./pages/penggajian/PagePenggajianPrint.jsx";
->>>>>>> 7914e30fe539bdbf0ad818549b6af97e84939342
 // import PageBarangList from "./pages/barang/PageBarangList.jsx";
 // import PageBarangCreate from "./pages/barang/PageBarangCreate.jsx";
 // import PageBarangDetail from "./pages/barang/PageBarangDetail.jsx";
