@@ -15,6 +15,17 @@ import PagePotonganCreate from "./pages/potongan/PagePotonganCreate.jsx";
 import PagePotonganList from "./pages/potongan/PagePotonganList.jsx";
 import PagePotonganDetail from "./pages/potongan/PagePotonganDetail.jsx";
 import PageKaryawanDetail from "./pages/karyawan/PageKaryawanDetail.jsx";
+import PageDepartemenList from "./pages/departemen/PageDepartemenList.jsx";
+<<<<<<< HEAD
+import PageDepartemenDetail from "./pages/departemen/PageDepartemenDetail.jsx";
+import PageDepartemenCreate from "./pages/departemen/PageDepartemenCreate.jsx";
+=======
+import PageDepartemenCreate from "./pages/departemen/PageDepartemenCreate.jsx";
+import PageDepartemenDetail from "./pages/departemen/PageDepartemenDetail.jsx";
+import PageDepartemenPrint from "./pages/departemen/PageDepartemenPrint.jsx";
+import PagePenggajianList from "./pages/penggajian/PagePenggajianList.jsx";
+import PagePenggajianPrint from "./pages/penggajian/PagePenggajianPrint.jsx";
+>>>>>>> 7914e30fe539bdbf0ad818549b6af97e84939342
 // import PageBarangList from "./pages/barang/PageBarangList.jsx";
 // import PageBarangCreate from "./pages/barang/PageBarangCreate.jsx";
 // import PageBarangDetail from "./pages/barang/PageBarangDetail.jsx";
@@ -43,9 +54,16 @@ const App = () => {
               <Route path={"potongan"} element={<PagePotonganCreate />} />
               <Route path={"detail/:id"} element={<PagePotonganDetail />} />
             </Route>
-            {/* <Route path="/kas" element={<PageCommonOutlet />}>
-              <Route index={true} element={<PageKasList />} />
-            </Route> */}
+            <Route path="/departemen" element={<PageCommonOutlet />}>
+              <Route index={true} element={<PageDepartemenList />} />
+              Route index={"departemen"} element={<PageDepartemenCreate />} />
+              <Route index={"detail/:id"} element={<PageDepartemenDetail />} />
+              <Route index={"print"} element={<PageDepartemenPrint />} />
+            </Route>
+            <Route path="/penggajian" element={<PageCommonOutlet />}>
+              <Route index={true} element={<PagePenggajianList />} />
+              <Route index={"penggajian"} element={<PagePenggajianPrint />} />
+            </Route>
           </Routes>
         </HashRouter>
       </ContextApplication.Provider>
