@@ -1,18 +1,18 @@
-import {Container, Nav, Navbar } from "react-bootstrap";
-import {useContext} from "react";
-import {ContextApplication} from "../config/contexts.js";
+import { Container, Nav, Navbar } from "react-bootstrap";
+import { useContext } from "react";
+import { ContextApplication } from "../config/contexts.js";
 import useJWT from "../hooks/useJWT.jsx";
 import useHTTP from "../hooks/useHTTP.jsx";
 
 const LibComponentNavbar = () => {
-  const jwt = useJWT()
+  const jwt = useJWT();
 
   const applcation = useContext(ContextApplication);
 
   const signOut = () => {
     jwt.signOut();
     applcation.setIsAuthenticated(false);
-  }
+  };
 
   return (
     <Navbar expand="lg" bg="dark" data-bs-theme="dark" className="d-print-none">
@@ -33,7 +33,7 @@ const LibComponentNavbar = () => {
         )}
       </Container>
     </Navbar>
-  )
-}
+  );
+};
 
 export default LibComponentNavbar;
