@@ -1,12 +1,12 @@
-import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
-import {useNavigate} from "react-router-dom";
+import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import useHTTP from "../../libs/hooks/useHTTP.jsx";
 import useJWT from "../../libs/hooks/useJWT.jsx";
 import useMessage from "../../libs/hooks/useMessage.jsx";
-import {useState} from "react";
+import { useState } from "react";
 import useValidator from "../../libs/hooks/useValidator.jsx";
 import useChangeListener from "../../libs/hooks/useChangeListener.jsx";
-import {BASE_URL} from "../../libs/config/settings.js";
+import { BASE_URL } from "../../libs/config/settings.js";
 import ComponentMessageValidation from "../../libs/components/ComponentMessageValidation.jsx";
 
 const PageDepartemenCreate = () => {
@@ -15,29 +15,31 @@ const PageDepartemenCreate = () => {
   const jwt = useJWT();
   const message = useMessage();
 
-  const [departemen, setDepartemen] = useState({})
+  const [departemen, setDepartemen] = useState({});
 
   const departemenChangeListener = useChangeListener();
   const departemenValidator = useValidator({});
-
 
   const onDepartemenCreate = () => {
     departemenValidator.reset();
 
     const config = {
       headers: {
-        Authorization: jwt.get()
-      }
-    }
+        Authorization: jwt.get(),
+      },
+    };
 
-    http.privateHTTP.post(`${BASE_URL}/departemen/`, departemen, config).then((response) => {
-      message.success(response);
-      navigate("/departemen")
-    }).catch((error) => {
-      message.error(error)
-      departemenValidator.except(error)
-    })
-  }
+    http.privateHTTP
+      .post(`${BASE_URL}/departemen/`, departemen, config)
+      .then((response) => {
+        message.success(response);
+        navigate("/");
+      })
+      .catch((error) => {
+        message.error(error);
+        departemenValidator.except(error);
+      });
+  };
 
   return (
     <>
@@ -51,17 +53,27 @@ const PageDepartemenCreate = () => {
           <Col md={6}>
             <Card>
               <Card.Body>
-                <Card.Subtitle className={"mb-3"}>Nama Departemen</Card.Subtitle>
+                <Card.Subtitle className={"mb-3"}>
+                  Nama Departemen
+                </Card.Subtitle>
                 <Form.Group className={"mb-3"}>
                   <Form.Control
                     placeholder={"Masukkan Nama Departemen"}
                     className={"bg-body-tertiary"}
                     value={departemen.nama}
                     name={"nama"}
-                    onChange={(e) => departemenChangeListener.onChangeText(e, departemen, setDepartemen)}
+                    onChange={(e) =>
+                      departemenChangeListener.onChangeText(
+                        e,
+                        departemen,
+                        setDepartemen
+                      )
+                    }
                   />
                   <Form.Text>Harap form di isi dengan baik</Form.Text>
-                  <ComponentMessageValidation messages={departemenValidator.get('nama')} />
+                  <ComponentMessageValidation
+                    messages={departemenValidator.get("nama")}
+                  />
                 </Form.Group>
               </Card.Body>
             </Card>
@@ -70,13 +82,18 @@ const PageDepartemenCreate = () => {
 
         <Row className={"d-flex justify-content-center"}>
           <Col md={6} className={"d-flex justify-content-end gap-2"}>
-            <Button variant={"outline-secondary"} onClick={() => navigate("/potongan")}>Batal</Button>
+            <Button
+              variant={"outline-secondary"}
+              onClick={() => navigate("/potongan")}
+            >
+              Batal
+            </Button>
             <Button onClick={onDepartemenCreate}>Simpan</Button>
           </Col>
         </Row>
       </Container>
     </>
-  )
-}
+  );
+};
 
 export default PageDepartemenCreate;
