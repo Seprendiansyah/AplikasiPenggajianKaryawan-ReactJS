@@ -86,8 +86,7 @@ const PageKaryawanList = () => {
                     <th>Nama</th>
                     <th>Jabatan</th>
                     <th>Gaji Pokok</th>
-                    <th>Status Pernikahan</th>
-                    <th>Jumlah Anak</th>
+                    <th>Tunjangan</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -99,9 +98,8 @@ const PageKaryawanList = () => {
                     <td>{value.nik}</td>
                     <td>{value.nama}</td>
                     <td>{value.jabatan.nama}</td>
-                    <td>{value.gajiPokok}</td>
-                    <td>{value.statusPernikahan}</td>
-                    <td>{value.keluarga.jumlahAnak}</td>
+                    <td>{value.jabatan.gajiPokok}</td>
+                    <td>{value.jabatan.tunjangan}</td>
                   </tr>
                 ))}
                 </tbody>

@@ -26,6 +26,7 @@ const PagePotonganCreate = () => {
     potongan: []
 });
 
+
   const onPotonganCreate = () => {
     potonganValidator.reset();
 

@@ -8,6 +8,7 @@ import useJWT from "../../src/libs/hooks/useJWT.jsx";
 import useMessage from "../../src/libs/hooks/useMessage.jsx";
 import useChangeListener from "../../src/libs/hooks/useChangeListener.jsx";
 import useHTTP from "../../src/libs/hooks/useHTTP.jsx";
+import WidgetJabatanChoice from "../jabatan/WidgetJabatanChoice.jsx";
 
 const WidgetKaryawanCreateModal = ({callback}) => {
     const navigate = useNavigate();
@@ -30,6 +31,8 @@ const WidgetKaryawanCreateModal = ({callback}) => {
         no_rekening: "",
     })
 
+    const persentasi = 5;
+    <div>{`${persentasi}%`}</div>;
     // const karyawanValidator = useValidator({
     //     nik: [],
     //     nama: [],
@@ -63,6 +66,18 @@ const WidgetKaryawanCreateModal = ({callback}) => {
     daftarPotongans([...potongans, potongan])
     }
 
+    const [jabatans, setdaftarJabatans] = useState([])
+
+    const onCallbackJabatanChoice = (jabatan) => {
+    const jabatanExist = jabatans.find((obj) => obj._id === jabatan._id);
+
+    if (jabatanExist) {
+      return;
+    }
+
+    setdaftarJabatans([...jabatans, jabatan])
+    }
+
     const onKaryawanCreate = () => {
         const url = `${BASE_URL}/karyawan/`;
         const config = {
@@ -92,6 +107,11 @@ const WidgetKaryawanCreateModal = ({callback}) => {
         const temps = potongans.filter((value) => value._id !== potongan._id);
         daftarPotongans(temps);
     }
+
+    const onItemRemovee = (jabatan) => {
+      const temps = jabatans.filter((value) => value._id !== jabatan._id);
+      setdaftarJabatans(temps);
+  }
 
     return (
         <>
@@ -163,19 +183,44 @@ const WidgetKaryawanCreateModal = ({callback}) => {
             </Form.Group>
             </Col>
             </Row>
-            <Row>
+            <Row className="mb-3">
+            <Col md={6}>
+              <WidgetJabatanChoice callback={onCallbackJabatanChoice} />
+            </Col>
+            <Col md={6}>
+              <Table striped={true} bordered={true} responsive={true}>
+                <thead>
+                <tr>
+                  <th>Nama</th>
+                  <th>Gaji Pokok</th>
+                  <th>Tunjangan</th>
+                </tr>
+                </thead>
+                <tbody>
+                {jabatans.map((value, indexJabatan) => (
+                  <tr key={indexJabatan}>
+                    <td>{value.nama}</td>
+                    <td>{value.gajiPokok}</td>
+                    <td>{value.tunjangan}</td>
+                    <td>
+                      <Button size={"sm"} onClick={() => onItemRemovee(value)}>Hapus</Button>
+                    </td>
+                  </tr>
+                ))}
+                </tbody>
+                </Table>
+                </Col>
+            </Row>
+            {/* <Row>
               <Col md={6} className={"mb-3"}>
               <Form.Group className={"mb-3"}>
               <Form.Label>Jabatan</Form.Label>
-              <Form.Select>
               <Form.Control
               name={"jabatan"}
               value={jabatan.nama}
-              onChange={(e) => changeListener.onChangeText(e, jabatan, setJabatan)}/>
-                <option>Pilih Jabatan</option>
-                <option value="Direktur Utama">Direktur Utama</option>
-                <option value="Direktur Keuangan">Direktur Keuangan</option>
-              </Form.Select>
+              onChange={handleJabatanChange}
+              readOnly
+              />
               </Form.Group>
               </Col>
               <Col md={6}>
@@ -184,17 +229,17 @@ const WidgetKaryawanCreateModal = ({callback}) => {
               <Form.Control
                 name={"gajiPokok"}
                 value={jabatan.gajiPokok}
-                type="text"
+                onChange={onCallbackJabatanChoice}
                 readOnly
               />
               </Form.Group>
               </Col>
-            </Row>
+            </Row> */}
             <Row>
               <Col>
               <WidgetPotonganChoice callback={onCallbackPotonganChoice} />
               </Col>
-              <Col md={8}>
+              <Col md={6}>
               <Table striped={true} bordered={true} responsive={true}>
                 <thead>
                 <tr>
@@ -207,7 +252,7 @@ const WidgetKaryawanCreateModal = ({callback}) => {
                 {potongans.map((value, index) => (
                   <tr key={index}>
                     <td>{value.nama}</td>
-                    <td>{value.potongan}</td>
+                    <td>{value.isPercentage ? value.potongan / 100 : value.potongan}</td>
                     <td>
                       <Button size={"sm"} onClick={() => onItemRemove(value)}>Hapus</Button>
                     </td>
@@ -232,6 +277,9 @@ const WidgetKaryawanCreateModal = ({callback}) => {
               </Col>
             </Row>
             </Modal.Body>
+            <Modal.Footer>
+            <Button onClick={onKaryawanCreate}>Simpan</Button>
+            </Modal.Footer>
             </Modal>
         </>
     )
