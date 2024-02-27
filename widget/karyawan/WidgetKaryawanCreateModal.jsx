@@ -82,7 +82,14 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
   const [jabatans, setdaftarJabatans] = useState([]);
 
   const onCallbackJabatanChoice = (jabatan) => {
+    // const jabatanExist = jabatans.find((obj) => obj._id === jabatan._id);
     setJabatan(jabatan);
+
+    // if (jabatanExist) {
+    //   return;
+    // }
+
+    // setdaftarJabatans([...jabatans, jabatan])
   };
 
   const onKaryawanCreate = () => {
