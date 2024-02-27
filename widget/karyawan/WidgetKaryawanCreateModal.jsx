@@ -69,13 +69,14 @@ const WidgetKaryawanCreateModal = ({callback}) => {
     const [jabatans, setdaftarJabatans] = useState([])
 
     const onCallbackJabatanChoice = (jabatan) => {
-    const jabatanExist = jabatans.find((obj) => obj._id === jabatan._id);
+    // const jabatanExist = jabatans.find((obj) => obj._id === jabatan._id);
+    setJabatan(jabatan);
 
-    if (jabatanExist) {
-      return;
-    }
+    // if (jabatanExist) {
+    //   return;
+    // }
 
-    setdaftarJabatans([...jabatans, jabatan])
+    // setdaftarJabatans([...jabatans, jabatan])
     }
 
     const onKaryawanCreate = () => {
@@ -87,7 +88,8 @@ const WidgetKaryawanCreateModal = ({callback}) => {
         }
         const payload = {
           ...karyawan,
-          jabatan
+          jabatan,
+          potongan:[...potongans],
         }
 
         http.privateHTTP.post(url, payload, config).then((response) => {
@@ -188,7 +190,8 @@ const WidgetKaryawanCreateModal = ({callback}) => {
               <WidgetJabatanChoice callback={onCallbackJabatanChoice} />
             </Col>
             <Col md={6}>
-              <Table striped={true} bordered={true} responsive={true}>
+              {JSON.stringify(jabatan)}
+              {/* <Table striped={true} bordered={true} responsive={true}>
                 <thead>
                 <tr>
                   <th>Nama</th>
@@ -208,7 +211,7 @@ const WidgetKaryawanCreateModal = ({callback}) => {
                   </tr>
                 ))}
                 </tbody>
-                </Table>
+                </Table> */}
                 </Col>
             </Row>
             {/* <Row>

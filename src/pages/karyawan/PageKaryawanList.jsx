@@ -6,7 +6,7 @@ import useMessage from "../../libs/hooks/useMessage.jsx";
 import {BASE_URL} from "../../libs/config/settings.js";
 import useURLResolver from "../../libs/hooks/useURLResolver.jsx";
 import {Link, useNavigate} from "react-router-dom";
-import WidgetKaryawanCreateModal from "../../../widget/barang/WidgetKaryawanCreateModal.jsx";
+import WidgetKaryawanCreateModal from "../../../widget/karyawan/WidgetKaryawanCreateModal.jsx";
 
 const PageKaryawanList = () => {
 

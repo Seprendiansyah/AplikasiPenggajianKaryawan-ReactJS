@@ -65,6 +65,7 @@ const WidgetJabatanChoice = ({ callback }) => {
             <div>{value.nama}</div>
             <div>{value.gajiPokok}</div>
             <div>{value.tunjangan}</div>
+            
             <Button size={"sm"} onClick={() => onPilih(value)}>Pilih</Button>
           </ListGroup.Item>
         ))}
