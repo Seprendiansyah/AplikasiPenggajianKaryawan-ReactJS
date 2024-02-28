@@ -125,7 +125,7 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
 
   return (
     <>
-      <Button onClick={handleShow}>Karyawan</Button>
+      <Button onClick={handleShow}>New Karyawan</Button>
 
       <Modal
         show={show}

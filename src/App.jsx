@@ -43,7 +43,7 @@ const App = () => {
             </Route>
             <Route path="/departemen" element={<PageCommonOutlet />}>
               <Route index={true} element={<PageDepartemenList />} />
-              <Route index={"#departemen"} element={<PageDepartemenCreate />} />
+              <Route index={"departemen"} element={<PageDepartemenCreate />} />
               <Route index={"detail/:id"} element={<PageDepartemenDetail />} />
             </Route>
             <Route path="/penggajian" element={<PageCommonOutlet />}>
