@@ -33,7 +33,7 @@ const PageDepartemenCreate = () => {
       .post(`${BASE_URL}/departemen/`, departemen, config)
       .then((response) => {
         message.success(response);
-        navigate("/");
+        navigate("/departemen");
       })
       .catch((error) => {
         message.error(error);

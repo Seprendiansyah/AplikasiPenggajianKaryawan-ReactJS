@@ -6,6 +6,7 @@ import useMessage from "../../libs/hooks/useMessage.jsx";
 import {BASE_URL} from "../../libs/config/settings.js";
 import useURLResolver from "../../libs/hooks/useURLResolver.jsx";
 import {Link, json, useNavigate} from "react-router-dom";
+import WidgetPenggajianCreateModal from "../../../widget/penggajian/WidgetPenggajianCreateModal.jsx";
 
 
 const PagePenggajianList = () => {
@@ -61,7 +62,8 @@ const PagePenggajianList = () => {
             <h3>Daftar Karyawan</h3>
           </Col>
           <Col className={"d-flex justify-content-end"}>
-            {/* <Button onClick={() => navigate("potongan")}>Penggajian</Button> */}
+            <WidgetPenggajianCreateModal callback={onPenggajianList} />
+            {/* <Button onClick={() => navigate("new")}>New Karyawan</Button> */}
           </Col>
         </Row>
         <Row className={"mb-4"}>
@@ -94,7 +96,7 @@ const PagePenggajianList = () => {
                   </tr>
                 </thead>
                 <tbody>   
-                  {JSON.stringify(daftarPenggajian)}
+                  {/* {JSON.stringify(daftarPenggajian)} */}
                   {daftarPenggajian.map((value) => (
                     <tr key={value._id}>
                       <td>

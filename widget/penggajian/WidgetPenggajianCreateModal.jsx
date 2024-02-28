@@ -10,7 +10,7 @@ import useChangeListener from "../../src/libs/hooks/useChangeListener.jsx";
 import useHTTP from "../../src/libs/hooks/useHTTP.jsx";
 import WidgetJabatanChoice from "../jabatan/WidgetJabatanChoice.jsx";
 
-const WidgetKaryawanCreateModal = ({ callback }) => {
+const WidgetPenggajianCreateModal = ({ callback }) => {
   const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
@@ -31,28 +31,11 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
         no_rekening: "",
     })
 
-    const persentasi = 5;
-    <div>{`${persentasi}%`}</div>;
-    // const karyawanValidator = useValidator({
-    //     nik: [],
-    //     nama: [],
-    //     alamat: [],
-    //     no_Telepon: [],
-    //     bank: [],
-    //     no_rekening: []
-    // })
-
     const [jabatan, setJabatan] = useState({
         nama: "",
         gajiPokok: 0,
         tunjangan: 0
     })
-
-    // const jabatanValidator = useValidator({
-    //     nama: [],
-    //     gajiPokok: [],
-    //     tunjangan: []
-    // })
 
     const [potongans, daftarPotongans] = useState([])
 
@@ -72,8 +55,8 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
     setJabatan(jabatan);
     }
 
-    const onKaryawanCreate = () => {
-        const url = `${BASE_URL}/karyawan/`;
+    const onPenggajianCreate = () => {
+        const url = `${BASE_URL}/penggajian/`;
         const config = {
           headers: {
             Authorization: jwt.get()
@@ -111,7 +94,7 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
     return (
         <>
             <Button onClick={handleShow}>Karyawan</Button>
-        
+
             <Modal show={show} onHide={handleClose} size={"xl"} backdrop={"static"} scrollable={true}>
                 <Modal.Header closeButton>
                 <Modal.Title>Karyawan</Modal.Title>
@@ -274,15 +257,15 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
             </Row>
             </Modal.Body>
             <Modal.Footer>
-            <Button onClick={onKaryawanCreate}>Simpan</Button>
+            <Button onClick={onPenggajianCreate}>Simpan</Button>
             </Modal.Footer>
             </Modal>
         </>
     )
 }
 
-WidgetKaryawanCreateModal.propTypes = {
+WidgetPenggajianCreateModal.propTypes = {
     callback: PropTypes.func
   }
   
-  export default WidgetKaryawanCreateModal;
+  export default WidgetPenggajianCreateModal;
