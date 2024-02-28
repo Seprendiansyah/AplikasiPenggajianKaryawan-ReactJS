@@ -254,14 +254,8 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
               <WidgetJabatanChoice callback={onCallbackJabatanChoice} />
             </Col>
             <Col md={6}>
-              <Card>
-                <Card.Body>
-                  <Col>Nama Jabatan : {jabatan.nama} </Col>
-                  <Col>Gaji Pokok : {jabatan.gajiPokok} </Col>
-                  <Col>Tunjangan : {jabatan.tunjangan} </Col>
-                </Card.Body>
-              </Card>
-              {/* <Table striped={true} bordered={true} responsive={true}>
+              {/* {JSON.stringify(jabatan)} */}
+              <Table striped={true} bordered={true} responsive={true}>
                 <thead>
                 <tr>
                   <th>Nama</th>
@@ -270,21 +264,16 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
                 </tr>
                 </thead>
                 <tbody>
-                {jabatans.map((value, indexJabatan) => (
-                  <tr key={indexJabatan}>
-                    <td>{value.nama}</td>
-                    <td>{value.gajiPokok}</td>
-                    <td>{value.tunjangan}</td>
-                    <td>
-                      <Button size={"sm"} onClick={() => onItemRemovee(value)}>Hapus</Button>
-                    </td>
+                  <tr>
+                    <td>{jabatan.nama}</td>
+                    <td>{jabatan.gajiPokok}</td>
+                    <td>{jabatan.tunjangan}</td>
                   </tr>
-                ))}
                 </tbody>
-                </Table> */}
-            </Col>
-          </Row>
-          {/* <Row>
+                </Table>
+                </Col>
+            </Row>
+            {/* <Row>
               <Col md={6} className={"mb-3"}>
               <Form.Group className={"mb-3"}>
               <Form.Label>Jabatan</Form.Label>
@@ -318,25 +307,22 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
                   <tr>
                     <th>Nama</th>
                     <th>Potongan</th>
+                    <th>TotalPotongan</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {potongans.map((value, index) => (
-                    <tr key={index}>
-                      <td>{value.nama}</td>
-                      <td>
-                        {value.isPercentage
-                          ? value.potongan / 100
-                          : value.potongan}
-                      </td>
-                      <td>
-                        <Button size={"sm"} onClick={() => onItemRemove(value)}>
-                          Hapus
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
+                  {JSON.stringify(potongans.TotalPotongan*jabatan.gajiPokok)}
+                {potongans.map((value, index) => (
+                  <tr key={index}>
+                    <td>{value.nama}</td>
+                    <td>{value.potongan / 100 }</td>
+                    <td>{value.TotalPotongan}</td>
+                    <td>
+                      <Button size={"sm"} onClick={() => onItemRemove(value)}>Hapus</Button>
+                    </td>
+                  </tr>
+                ))}
                 </tbody>
                 <tbody>
                   {/* <tr>
