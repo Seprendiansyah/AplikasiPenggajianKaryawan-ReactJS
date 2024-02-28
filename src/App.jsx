@@ -32,7 +32,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<PageCommonOutlet />}>
               <Route index={true} element={<PageKaryawanList />} />
-              <Route path={"karyawan"} element={<PageKaryawanCreate />} />
+              {/* <Route path={"new"} element={<PageKaryawanCreate />} /> */}
               <Route path={"detail/:id"} element={<PageKaryawanDetail />} />
             </Route>
             <Route path="/potongan" element={<PageCommonOutlet />}>
