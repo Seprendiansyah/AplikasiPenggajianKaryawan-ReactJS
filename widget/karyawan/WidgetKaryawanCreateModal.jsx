@@ -158,7 +158,7 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
                   name={"no_Telepon"}
                   value={karyawan.no_Telepon}
                   onChange={(e) =>
-                    changeListener.onChangeNumber(e, karyawan, setKaryawan)
+                    changeListener.onChangeText(e, karyawan, setKaryawan)
                   }
                 />
               </Form.Group>
@@ -205,7 +205,7 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
                   name={"no_rekening"}
                   value={karyawan.no_rekening}
                   onChange={(e) =>
-                    changeListener.onChangeNumber(e, karyawan, setKaryawan)
+                    changeListener.onChangeText(e, karyawan, setKaryawan)
                   }
                 />
               </Form.Group>

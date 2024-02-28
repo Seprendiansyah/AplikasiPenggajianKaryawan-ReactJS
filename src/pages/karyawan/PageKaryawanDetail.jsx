@@ -16,10 +16,37 @@ const PageKaryawanDetail = () => {
   const jwt = useJWT();
   const message = useMessage();
 
-  const [karyawan, setKaryawan] = useState({});
-  const [jabatan, setJabatan] = useState({});
+  const [karyawan, setKaryawan] = useState({
+    nik: "",
+    nama: "",
+    alamat: "",
+    no_Telepon: "",
+    bank: "",
+    no_rekening: "",
+  });
+
+  const [jabatan, setJabatan] = useState({
+    nama: "",
+    gajiPokok: 0,
+    tunjangan: 0,
+  });
+
   const karyawanChangeListener = useChangeListener();
-  const karyawanValidator = useValidator({});
+  const jabatanChangeListener = useChangeListener();
+  const karyawanValidator = useValidator({
+    nik: [],
+    nama: [],
+    alamat: [],
+    no_Telepon: [],
+    bank: [],
+    no_rekening: [],
+  });
+
+  const jabatanValidator = useValidator({
+    nama: [],
+    gajiPokok: [],
+    tunjangan: [],
+  });
 
   const onKaryawanUpdate = () => {
     karyawanValidator.reset();
@@ -131,48 +158,6 @@ const PageKaryawanDetail = () => {
                   <Form.Text>Harap form di isi dengan baik</Form.Text>
                   <ComponentMessageValidation
                     messages={karyawanValidator.get("nama")}
-                  />
-                </Form.Group>
-                <Card.Subtitle className={"mb-3"}>Jabatan</Card.Subtitle>
-                <Form.Group className={"mb-3"}>
-                  <Form.Control
-                    className={"bg-body-tertiary"}
-                    value={jabatan.nama}
-                    onChange={(e) =>
-                      karyawanChangeListener.onChangeText(
-                        e,
-                        jabatan,
-                        setJabatan
-                      )
-                    }
-                  />
-                </Form.Group>
-                <Card.Subtitle className={"mb-3"}>Gaji Pokok</Card.Subtitle>
-                <Form.Group className={"mb-3"}>
-                  <Form.Control
-                    className={"bg-body-tertiary"}
-                    value={jabatan.gajiPokok}
-                    onChange={(e) =>
-                      karyawanChangeListener.onChangeNumber(
-                        e,
-                        jabatan,
-                        setJabatan
-                      )
-                    }
-                  />
-                </Form.Group>
-                <Card.Subtitle className={"mb-3"}>Tunjangan</Card.Subtitle>
-                <Form.Group className={"mb-3"}>
-                  <Form.Control
-                    className={"bg-body-tertiary"}
-                    value={jabatan.tunjangan}
-                    onChange={(e) =>
-                      karyawanChangeListener.onChangeNumber(
-                        e,
-                        jabatan,
-                        setJabatan
-                      )
-                    }
                   />
                 </Form.Group>
               </Card.Body>
