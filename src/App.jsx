@@ -19,6 +19,7 @@ import PageDepartemenList from "./pages/departemen/PageDepartemenList.jsx";
 import PageDepartemenCreate from "./pages/departemen/PageDepartemenCreate.jsx";
 import PageDepartemenDetail from "./pages/departemen/PageDepartemenDetail.jsx";
 import PagePenggajianList from "./pages/penggajian/PagePenggajianList.jsx";
+import PagePenggajianPrint from "./pages/penggajian/PagePenggajianPrint.jsx";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -47,7 +48,7 @@ const App = () => {
             </Route>
             <Route path="/penggajian" element={<PageCommonOutlet />}>
               <Route index={true} element={<PagePenggajianList />} />
-              {/* <Route index={"penggajian"} element={<PagePenggajianPrint />} /> */}
+              <Route index={"penggajian"} element={<PagePenggajianPrint />} />
             </Route>
           </Routes>
         </HashRouter>

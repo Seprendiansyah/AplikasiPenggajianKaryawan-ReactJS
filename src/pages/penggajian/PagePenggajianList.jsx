@@ -1,15 +1,22 @@
-import {Button, Card, Col, Container, Form, Pagination, Row, Table} from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  Form,
+  Pagination,
+  Row,
+  Table,
+} from "react-bootstrap";
 import useHTTP from "../../libs/hooks/useHTTP.jsx";
 import useJWT from "../../libs/hooks/useJWT.jsx";
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import useMessage from "../../libs/hooks/useMessage.jsx";
-import {BASE_URL} from "../../libs/config/settings.js";
+import { BASE_URL } from "../../libs/config/settings.js";
 import useURLResolver from "../../libs/hooks/useURLResolver.jsx";
-import {Link, json, useNavigate} from "react-router-dom";
-
+import { Link, json, useNavigate } from "react-router-dom";
 
 const PagePenggajianList = () => {
-
   const http = useHTTP();
   const jwt = useJWT();
   const message = useMessage();
@@ -93,8 +100,7 @@ const PagePenggajianList = () => {
                     {/* <th>Action</th> */}
                   </tr>
                 </thead>
-                <tbody>   
-                  {JSON.stringify(daftarPenggajian)}
+                <tbody>
                   {daftarPenggajian.map((value) => (
                     <tr key={value._id}>
                       <td>
@@ -105,9 +111,10 @@ const PagePenggajianList = () => {
                           {value._id}
                         </Link>
                       </td>
-                      <td>{value.karyawan.nik}</td>
-                      <td>{value.karyawan.nama}</td>
-                      <td>{value.karyawan.jabatan.nama}</td>
+                      <td>{value.nik}</td>
+                      <td>{value.nama}</td>
+                      <td>{value.jabatan.nama}</td>
+                      <td>{value.departemen.nama}</td>
                       {/* <td>{value.karyawan.departemen.nama}</td> */}
                       <td>{value.totalGaji}</td>
                       {/* <td>
