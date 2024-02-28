@@ -15,10 +15,14 @@ const PageDepartemenCreate = () => {
   const jwt = useJWT();
   const message = useMessage();
 
-  const [departemen, setDepartemen] = useState({});
+  const [departemen, setDepartemen] = useState({
+    nama: "",
+  });
 
   const departemenChangeListener = useChangeListener();
-  const departemenValidator = useValidator({});
+  const departemenValidator = useValidator({
+    nama: [],
+  });
 
   const onDepartemenCreate = () => {
     departemenValidator.reset();
@@ -82,10 +86,7 @@ const PageDepartemenCreate = () => {
 
         <Row className={"d-flex justify-content-center"}>
           <Col md={6} className={"d-flex justify-content-end gap-2"}>
-            <Button
-              variant={"outline-secondary"}
-              onClick={() => navigate("/departemen")}
-            >
+            <Button variant={"outline-secondary"} onClick={() => navigate("/")}>
               Batal
             </Button>
             <Button onClick={onDepartemenCreate}>Simpan</Button>

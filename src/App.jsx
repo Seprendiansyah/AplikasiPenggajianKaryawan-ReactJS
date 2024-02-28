@@ -40,7 +40,6 @@ const App = () => {
           <Routes>
             <Route path="/" element={<PageCommonOutlet />}>
               <Route index={true} element={<PageKaryawanList />} />
-              {/* <Route path={"new"} element={<PageKaryawanCreate />} /> */}
               <Route path={"detail/:id"} element={<PageKaryawanDetail />} />
             </Route>
             <Route path="/potongan" element={<PageCommonOutlet />}>
@@ -50,7 +49,7 @@ const App = () => {
             </Route>
             <Route path="/departemen" element={<PageCommonOutlet />}>
               <Route index={true} element={<PageDepartemenList />} />
-              <Route index={"departemen"} element={<PageDepartemenCreate />} />
+              <Route index={"#departemen"} element={<PageDepartemenCreate />} />
               <Route index={"detail/:id"} element={<PageDepartemenDetail />} />
             </Route>
             <Route path="/penggajian" element={<PageCommonOutlet />}>
