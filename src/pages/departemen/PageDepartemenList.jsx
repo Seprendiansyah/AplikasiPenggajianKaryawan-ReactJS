@@ -87,7 +87,9 @@ const PageDepartemenList = () => {
             <h3>Daftar Departemen</h3>
           </Col>
           <Col className={"d-flex justify-content-end"}>
-          <Button onClick={() => navigate("departemen")}>New Departemen</Button>
+            <Button onClick={() => navigate("create")}>
+              Tambah Departemen
+            </Button>
           </Col>
         </Row>
         <Row className={"mb-4"}>

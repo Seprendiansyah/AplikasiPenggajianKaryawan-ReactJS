@@ -1,15 +1,23 @@
-import {Button, Card, Col, Container, Form, Pagination, Row, Table} from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  Form,
+  Pagination,
+  Row,
+  Table,
+} from "react-bootstrap";
 import useHTTP from "../../libs/hooks/useHTTP.jsx";
 import useJWT from "../../libs/hooks/useJWT.jsx";
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import useMessage from "../../libs/hooks/useMessage.jsx";
-import {BASE_URL} from "../../libs/config/settings.js";
+import { BASE_URL } from "../../libs/config/settings.js";
 import useURLResolver from "../../libs/hooks/useURLResolver.jsx";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import WidgetKaryawanCreateModal from "../../../widget/karyawan/WidgetKaryawanCreateModal.jsx";
 
 const PageKaryawanList = () => {
-
   const navigate = useNavigate();
 
   const http = useHTTP();
@@ -17,8 +25,8 @@ const PageKaryawanList = () => {
   const message = useMessage();
 
   const [daftarKaryawan, setDaftarKaryawan] = useState([]);
-  const [daftarKaryawanPagination, setDaftarKaryawanPagination] = useState({})
-  const karyawanSearch = useRef({value: ""})
+  const [daftarKaryawanPagination, setDaftarKaryawanPagination] = useState({});
+  const karyawanSearch = useRef({ value: "" });
 
   const onKaryawanList = (params) => {
     const url = `${BASE_URL}/karyawan/`;
@@ -26,26 +34,29 @@ const PageKaryawanList = () => {
       headers: {
         Authorization: jwt.get(),
       },
-      params
-    }
-    http.privateHTTP.get(url, config).then((response) => {
-      const { results, ...pagination } = response.data;
-      setDaftarKaryawanPagination(pagination);
-      setDaftarKaryawan(results)
-    }).catch((error) => {
-      message.error(error);
-    })
-  }
+      params,
+    };
+    http.privateHTTP
+      .get(url, config)
+      .then((response) => {
+        const { results, ...pagination } = response.data;
+        setDaftarKaryawanPagination(pagination);
+        setDaftarKaryawan(results);
+      })
+      .catch((error) => {
+        message.error(error);
+      });
+  };
 
   const onKaryawanSearch = (e) => {
-    if (e.key == 'Enter') {
-        onKaryawanList({search: karyawanSearch.current.value})
+    if (e.key == "Enter") {
+      onKaryawanList({ search: karyawanSearch.current.value });
     }
-  }
+  };
 
   const onKaryawanPagination = (page) => {
-    onKaryawanList({search: karyawanSearch.current.value, page})
-  }
+    onKaryawanList({ search: karyawanSearch.current.value, page });
+  };
 
   useEffect(() => {
     onKaryawanList();
@@ -70,10 +81,12 @@ const PageKaryawanList = () => {
                 <Row>
                   <Col>
                     <Form.Group>
-                      <Form.Control ref={karyawanSearch}
-                                    onKeyDown={onKaryawanSearch}
-                                    placeholder={"Search..."}
-                                    className={"w-50 bg-body-tertiary"} />
+                      <Form.Control
+                        ref={karyawanSearch}
+                        onKeyDown={onKaryawanSearch}
+                        placeholder={"Search..."}
+                        className={"w-50 bg-body-tertiary"}
+                      />
                     </Form.Group>
                   </Col>
                 </Row>
@@ -109,15 +122,24 @@ const PageKaryawanList = () => {
 
               <Card.Footer>
                 <Pagination>
-                  <Pagination.First disabled={!daftarKaryawanPagination.previous}
-                                    onClick={() => onKaryawanPagination(1)} />
+                  <Pagination.First
+                    disabled={!daftarKaryawanPagination.previous}
+                    onClick={() => onKaryawanPagination(1)}
+                  />
                   {daftarKaryawanPagination?.pages?.map((page) => (
                     <Pagination.Item
                       onClick={() => onKaryawanPagination(page.page)}
-                      key={page.page}>{page.page}</Pagination.Item>
+                      key={page.page}
+                    >
+                      {page.page}
+                    </Pagination.Item>
                   ))}
-                  <Pagination.Last disabled={!daftarKaryawanPagination.next}
-                                   onClick={() => onKaryawanPagination(daftarKaryawanPagination.totalPage)} />
+                  <Pagination.Last
+                    disabled={!daftarKaryawanPagination.next}
+                    onClick={() =>
+                      onKaryawanPagination(daftarKaryawanPagination.totalPage)
+                    }
+                  />
                 </Pagination>
               </Card.Footer>
             </Card>
@@ -125,7 +147,7 @@ const PageKaryawanList = () => {
         </Row>
       </Container>
     </>
-  )
-}
+  );
+};
 
 export default PageKaryawanList;

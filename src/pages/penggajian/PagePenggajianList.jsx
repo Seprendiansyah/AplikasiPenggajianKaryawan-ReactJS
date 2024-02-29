@@ -14,9 +14,8 @@ import { useEffect, useRef, useState } from "react";
 import useMessage from "../../libs/hooks/useMessage.jsx";
 import { BASE_URL } from "../../libs/config/settings.js";
 import useURLResolver from "../../libs/hooks/useURLResolver.jsx";
-import {Link, json, useNavigate} from "react-router-dom";
+import { Link, json, useNavigate } from "react-router-dom";
 import WidgetPenggajianCreateModal from "../../../widget/penggajian/WidgetPenggajianCreateModal.jsx";
-
 
 const PagePenggajianList = () => {
   const http = useHTTP();
@@ -48,6 +47,25 @@ const PagePenggajianList = () => {
       });
   };
 
+  // const onKaryawanList = (id) => {
+  //   const url = `${BASE_URL}/karyawan/${id}`;
+  //   const config = {
+  //     headers: {
+  //       Authorization: jwt.get(),
+  //     },
+  //   };
+
+  //   http.privateHTTP
+  //     .get(url, null, config)
+  //     .then((response) => {
+  //       onPenggajianList();
+  //       message.success(response);
+  //     })
+  //     .catch((error) => {
+  //       message.error(error);
+  //     });
+  // };
+
   const onPenggajianSearch = (e) => {
     if (e.key == "Enter") {
       onPenggajianList({ search: penggajianSearch.current.value });
@@ -58,7 +76,11 @@ const PagePenggajianList = () => {
     onPenggajianList({ search: penggajianSearch.current.value, page });
   };
 
-  const onPenggajianPrint = useEffect(() => {
+  // const onPenggajianPrint = useEffect(() => {
+  //   onPenggajianList();
+  // }, []);
+
+  useEffect(() => {
     onPenggajianList();
   }, []);
   const karyawan = daftarPenggajian;
