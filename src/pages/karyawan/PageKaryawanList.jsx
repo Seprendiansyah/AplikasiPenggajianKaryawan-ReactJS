@@ -101,22 +101,35 @@ const PageKaryawanList = () => {
                     <th>Gaji Pokok</th>
                     <th>Tunjangan</th>
                     <th>Action</th>
+                    {/* <th>Departemen</th> */}
                   </tr>
                 </thead>
                 <tbody>
-                {daftarKaryawan.map((value) => (
-                  <tr key={value._id}>
-                    <td>
-                      <Link to={`/detail/${value._id}`} className={"text-decoration-none"}>{value._id}</Link>
-                    </td>
-                    <td>{value.nik}</td>
-                    <td>{value.nama}</td>
-                    <td>{value.jabatan.nama}</td>
-                    <td>{value.jabatan.gajiPokok}</td>
-                    <td>{value.jabatan.tunjangan}</td>
-                    <td><Button onClick={() => navigate("print", {state: value})}>Print</Button></td>
-                  </tr>
-                ))}
+                  {daftarKaryawan.map((value) => (
+                    <tr key={value._id}>
+                      <td>
+                        <Link
+                          to={`/detail/${value._id}`}
+                          className={"text-decoration-none"}
+                        >
+                          {value._id}
+                        </Link>
+                      </td>
+                      <td>{value.nik}</td>
+                      <td>{value.nama}</td>
+                      <td>{value.jabatan.nama}</td>
+                      <td>{value.jabatan.gajiPokok}</td>
+                      <td>{value.jabatan.tunjangan}</td>
+                      {/* <td>{value.departemen.nama}</td> */}
+                      <td>
+                        <Button
+                          onClick={() => navigate("print", { state: value })}
+                        >
+                          Print
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </Table>
 
