@@ -125,19 +125,15 @@ const PageKaryawanDetail = () => {
           <Col md={6}>
             <Card>
               <Card.Body>
+            {JSON.stringify(karyawan)}
+
                 <Card.Subtitle className={"mb-3"}>NIK</Card.Subtitle>
                 <Form.Group className={"mb-3"}>
                   <Form.Control
                     className={"bg-body-tertiary"}
                     value={karyawan.nik}
                     name={"nik"}
-                    onChange={(e) =>
-                      karyawanChangeListener.onChangeText(
-                        e,
-                        karyawan,
-                        setKaryawan
-                      )
-                    }
+                    disabled
                   />
                 </Form.Group>
                 <Card.Subtitle className={"mb-3"}>Nama Karyawan</Card.Subtitle>

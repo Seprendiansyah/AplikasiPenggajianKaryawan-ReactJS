@@ -61,7 +61,7 @@ const PagePenggajianList = () => {
   const onPenggajianPrint = useEffect(() => {
     onPenggajianList();
   }, []);
-
+  const karyawan = daftarPenggajian;
   return (
     <>
       <Container className={"mt-4"}>
@@ -71,7 +71,6 @@ const PagePenggajianList = () => {
           </Col>
           <Col className={"d-flex justify-content-end"}>
             <WidgetPenggajianCreateModal callback={onPenggajianList} />
-            {/* <Button onClick={() => navigate("new")}>New Karyawan</Button> */}
           </Col>
         </Row>
         <Row className={"mb-4"}>
@@ -104,7 +103,7 @@ const PagePenggajianList = () => {
                   </tr>
                 </thead>
                 <tbody>   
-                  {/* {JSON.stringify(daftarPenggajian)} */}
+                  {JSON.stringify(karyawan)}
                   {daftarPenggajian.map((value) => (
                     <tr key={value._id}>
                       <td>
@@ -116,11 +115,10 @@ const PagePenggajianList = () => {
                         </Link>
                       </td>
                       <td>{value.nik}</td>
-                      <td>{value.nama}</td>
+                      {/* <td>{value.karyawanref.nama}</td>
                       <td>{value.jabatan.nama}</td>
                       <td>{value.departemen.nama}</td>
-                      {/* <td>{value.karyawan.departemen.nama}</td> */}
-                      <td>{value.totalGaji}</td>
+                      <td>{value.totalGaji}</td> */}
                       {/* <td>
                         <Button onClick={() => navigate("print")}>Print</Button>
                       </td> */}

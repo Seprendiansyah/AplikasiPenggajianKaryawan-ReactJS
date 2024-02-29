@@ -31,6 +31,7 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
         no_rekening: "",
     })
 
+    const [penggajian,setPenggajian]=useState({})
     const [jabatan, setJabatan] = useState({
         nama: "",
         gajiPokok: 0,

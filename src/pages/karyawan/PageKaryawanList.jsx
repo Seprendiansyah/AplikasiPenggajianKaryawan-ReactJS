@@ -87,6 +87,7 @@ const PageKaryawanList = () => {
                     <th>Jabatan</th>
                     <th>Gaji Pokok</th>
                     <th>Tunjangan</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -100,6 +101,7 @@ const PageKaryawanList = () => {
                     <td>{value.jabatan.nama}</td>
                     <td>{value.jabatan.gajiPokok}</td>
                     <td>{value.jabatan.tunjangan}</td>
+                    <td><Button onClick={() => navigate("print", {state: value})}>Print</Button></td>
                   </tr>
                 ))}
                 </tbody>

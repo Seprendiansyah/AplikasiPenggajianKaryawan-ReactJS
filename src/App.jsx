@@ -19,6 +19,8 @@ import PageDepartemenList from "./pages/departemen/PageDepartemenList.jsx";
 import PagePenggajianList from "./pages/penggajian/PagePenggajianList.jsx";
 import PageDepartemenCreate from "./pages/departemen/PageDepartemenCreate.jsx";
 import PageDepartemenDetail from "./pages/departemen/PageDepartemenDetail.jsx";
+import PagePenggajianCreate from "./pages/penggajian/PageKaryawanCreate.jsx";
+import PageKaryawanPrint from "./pages/karyawan/PageKaryawanPrint.jsx";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -32,8 +34,11 @@ const App = () => {
           <Routes>
             <Route path="/" element={<PageCommonOutlet />}>
               <Route index={true} element={<PageKaryawanList />} />
-              {/* <Route path={"new"} element={<PageKaryawanCreate />} /> */}
+              <Route path={"new"} element={<PageKaryawanCreate />} />
               <Route path={"detail/:id"} element={<PageKaryawanDetail />} />
+              //TESTING PRINT
+              <Route path={"print"} element={<PageKaryawanPrint />} />
+
             </Route>
             <Route path="/potongan" element={<PageCommonOutlet />}>
               <Route index={true} element={<PagePotonganList />} />
@@ -48,9 +53,9 @@ const App = () => {
             <Route path="/penggajian" element={<PageCommonOutlet />}>
               <Route index={true} element={<PagePenggajianList />} />
               
-              {/* <Route index={"penggajian"} element={<PagePenggajianCreate />} />
-              <Route index={"detail/:id"} element={<PagePenggajianDetail/>} /> */}
-              {/* <Route index={"penggajian"} element={<PagePenggajianPrint />} /> */}
+                <Route index={"penggajian"} element={<PagePenggajianCreate />} />
+                {/* <Route index={"detail/:id"} element={<PagePenggajianDetail/>} />
+                <Route index={"penggajian"} element={<PagePenggajianPrint />} /> */}
             </Route>
           </Routes>
         </HashRouter>

@@ -273,30 +273,7 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
                 </Table>
                 </Col>
             </Row>
-            {/* <Row>
-              <Col md={6} className={"mb-3"}>
-              <Form.Group className={"mb-3"}>
-              <Form.Label>Jabatan</Form.Label>
-              <Form.Control
-              name={"jabatan"}
-              value={jabatan.nama}
-              onChange={handleJabatanChange}
-              readOnly
-              />
-              </Form.Group>
-              </Col>
-              <Col md={6}>
-              <Form.Group className={"mb-3"}>
-              <Form.Label>Gaji Pokok</Form.Label>
-              <Form.Control
-                name={"gajiPokok"}
-                value={jabatan.gajiPokok}
-                onChange={onCallbackJabatanChoice}
-                readOnly
-              />
-              </Form.Group>
-              </Col>
-            </Row> */}
+            
           <Row>
             <Col>
               <WidgetPotonganChoice callback={onCallbackPotonganChoice} />
@@ -312,7 +289,7 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {JSON.stringify(potongans.TotalPotongan*jabatan.gajiPokok)}
+                  {JSON.stringify(potongans.TotalPotongan)}
                 {potongans.map((value, index) => (
                   <tr key={index}>
                     <td>{value.nama}</td>
