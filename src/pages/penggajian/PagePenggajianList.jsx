@@ -14,10 +14,11 @@ import { useEffect, useRef, useState } from "react";
 import useMessage from "../../libs/hooks/useMessage.jsx";
 import { BASE_URL } from "../../libs/config/settings.js";
 import useURLResolver from "../../libs/hooks/useURLResolver.jsx";
-import { Link, json, useNavigate } from "react-router-dom";
+import { Link, Navigate, json, useNavigate } from "react-router-dom";
 import WidgetPenggajianCreateModal from "../../../widget/penggajian/WidgetPenggajianCreateModal.jsx";
 
 const PagePenggajianList = () => {
+  const navigate = useNavigate();
   const http = useHTTP();
   const jwt = useJWT();
   const message = useMessage();
@@ -121,7 +122,7 @@ const PagePenggajianList = () => {
                     <th>Jabatan</th>
                     <th>Departemen</th>
                     <th>Gaji Bersih</th>
-                    {/* <th>Action</th> */}
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>   
@@ -137,13 +138,11 @@ const PagePenggajianList = () => {
                         </Link>
                       </td>
                       <td>{value.nik}</td>
-                      {/* <td>{value.karyawanref.nama}</td>
-                      <td>{value.jabatan.nama}</td>
-                      <td>{value.departemen.nama}</td>
-                      <td>{value.totalGaji}</td> */}
-                      {/* <td>
-                        <Button onClick={() => navigate("print")}>Print</Button>
-                      </td> */}
+                      <td>{value.karyawanref.nama}</td>
+                      <td>{value.karyawanref.jabatan.nama}</td>
+                      {/* <td>{value.departemen.nama}</td> */}
+                      {/* <td>{value.totalGaji}</td> */}
+                      <td><Button onClick={() => navigate("printer", {state: value})}>Print</Button></td>
                     </tr>
                   ))}
                 </tbody>
