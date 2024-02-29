@@ -106,6 +106,7 @@ const PageKaryawanList = () => {
                   </tr>
                 </thead>
                 <tbody>
+                  {/* {JSON.stringify(daftarKaryawan)} */}
                   {daftarKaryawan.map((value) => (
                     <tr key={value._id}>
                       <td>

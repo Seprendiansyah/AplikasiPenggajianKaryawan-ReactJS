@@ -14,9 +14,8 @@ import { useEffect, useRef, useState } from "react";
 import useMessage from "../../libs/hooks/useMessage.jsx";
 import { BASE_URL } from "../../libs/config/settings.js";
 import useURLResolver from "../../libs/hooks/useURLResolver.jsx";
-import {Link, json, useNavigate} from "react-router-dom";
+import { Link, json, useNavigate } from "react-router-dom";
 import WidgetPenggajianCreateModal from "../../../widget/penggajian/WidgetPenggajianCreateModal.jsx";
-
 
 const PagePenggajianList = () => {
   const http = useHTTP();
@@ -126,7 +125,7 @@ const PagePenggajianList = () => {
                     {/* <th>Action</th> */}
                   </tr>
                 </thead>
-                <tbody>   
+                <tbody>
                   {/* {JSON.stringify(daftarPenggajian)} */}
                   {daftarPenggajian.map((value) => (
                     <tr key={value._id}>
