@@ -23,6 +23,9 @@ const PageKaryawanDetail = () => {
     no_Telepon: "",
     bank: "",
     no_rekening: "",
+    departemen: {
+      nama: "",
+    },
   });
 
   const [jabatan, setJabatan] = useState({
@@ -31,9 +34,9 @@ const PageKaryawanDetail = () => {
     tunjangan: 0,
   });
 
-  const [departemen, setDepartemen] = useState({
-    nama: "",
-  });
+  // const [departemen, setDepartemen] = useState({
+  //   nama: "",
+  // });
 
   const karyawanChangeListener = useChangeListener();
   const departemenChangeListener = useChangeListener();
@@ -46,17 +49,18 @@ const PageKaryawanDetail = () => {
     no_Telepon: [],
     bank: [],
     no_rekening: [],
+    departemen: [],
   });
 
-  const jabatanValidator = useValidator({
-    nama: [],
-    gajiPokok: [],
-    tunjangan: [],
-  });
+  // const jabatanValidator = useValidator({
+  //   nama: [],
+  //   gajiPokok: [],
+  //   tunjangan: [],
+  // });
 
-  const departemenValidator = useValidator({
-    nama: [],
-  });
+  // const departemenValidator = useValidator({
+  //   nama: [],
+  // });
 
   const onKaryawanUpdate = () => {
     karyawanValidator.reset();
@@ -170,19 +174,19 @@ const PageKaryawanDetail = () => {
                   <Form.Control
                     placeholder={"Masukkan Nama Departemen"}
                     className={"bg-body-tertiary"}
-                    value={departemen.nama}
-                    name={"nama"}
+                    value={karyawan.departemen.nama}
+                    name={"departemen"}
                     onChange={(e) =>
                       departemenChangeListener.onChangeText(
                         e,
-                        departemen,
-                        setDepartemen
+                        karyawan,
+                        setKaryawan
                       )
                     }
                   />
                   <Form.Text>Harap form di isi dengan baik</Form.Text>
                   <ComponentMessageValidation
-                    messages={departemenValidator.get("nama")}
+                    messages={karyawanValidator.get("departemen.nama")}
                   />
                 </Form.Group>
               </Card.Body>

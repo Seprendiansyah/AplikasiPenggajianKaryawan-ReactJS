@@ -39,7 +39,6 @@ const App = () => {
               {/* <Route path={"new"} element={<PageKaryawanCreate />} /> */}
               <Route path={"detail/:id"} element={<PageKaryawanDetail />} />
               <Route path={"print"} element={<PageKaryawanPrint />} />
-
             </Route>
             <Route path="/potongan" element={<PageCommonOutlet />}>
               <Route index={true} element={<PagePotonganList />} />
