@@ -136,7 +136,7 @@ const PagePenggajianList = () => {
                           {value._id}
                         </Link>
                       </td>
-                      <td>{value.nik}</td>
+                      <td>{value.karyawanref.nik}</td>
                       <td>{value.karyawanref.nama}</td>
                       <td>{value.karyawanref.jabatan.nama}</td>
                       <td>{value.karyawanref.departemen.nama}</td>
