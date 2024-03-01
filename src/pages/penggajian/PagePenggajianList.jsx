@@ -131,12 +131,7 @@ const PagePenggajianList = () => {
                   {daftarPenggajian.map((value) => (
                     <tr key={value._id}>
                       <td>
-                        <Link
-                          to={`/penggajian/detail/${value._id}`}
-                          className={"text-decoration-none"}
-                        >
                           {value._id}
-                        </Link>
                       </td>
                       <td>{value.karyawanref.nik}</td>
                       <td>{value.karyawanref.nama}</td>
