@@ -93,7 +93,9 @@ const PagePenggajianList = () => {
             <h3>Daftar Karyawan</h3>
           </Col>
           <Col className={"d-flex justify-content-end"}>
-            <WidgetPenggajianCreateModal callback={onPenggajianList} />
+            <Button onClick={() => navigate("penggajian")}>
+              Tambah Penggajian
+            </Button>
           </Col>
         </Row>
         <Row className={"mb-4"}>

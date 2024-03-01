@@ -110,7 +110,7 @@ const PageKaryawanPrint = () => {
                 </tr>
                 <tr>
                   <th>Departemen</th>
-                  <td>IT belum diaplikasikan</td>
+                  <td>{data.departemen.nama}</td>
                 </tr>
                 <tr>
                   <th>Gaji</th>

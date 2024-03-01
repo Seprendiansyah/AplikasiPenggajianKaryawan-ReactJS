@@ -10,7 +10,7 @@ import { useState } from "react";
 import { ContextApplication } from "./libs/config/contexts.js";
 import PageCommonOutlet from "./pages/commons/PageCommonOutlet.jsx";
 import PageKaryawanList from "./pages/karyawan/PageKaryawanList.jsx";
-import PageKaryawanCreate from "./pages/karyawan/PageKaryawanCreate.jsx";
+// import PageKaryawanCreate from "./pages/karyawan/PageKaryawanCreate.jsx";
 import PagePotonganCreate from "./pages/potongan/PagePotonganCreate.jsx";
 import PagePotonganList from "./pages/potongan/PagePotonganList.jsx";
 import PagePotonganDetail from "./pages/potongan/PagePotonganDetail.jsx";
@@ -21,6 +21,8 @@ import PageDepartemenCreate from "./pages/departemen/PageDepartemenCreate.jsx";
 import PageDepartemenDetail from "./pages/departemen/PageDepartemenDetail.jsx";
 import PagePenggajianPrint from "./pages/penggajian/PagePenggajianPrint.jsx";
 import PageKaryawanPrint from "./pages/karyawan/PageKaryawanPrint.jsx";
+import PagePenggajianCreate from "./pages/penggajian/PagePenggajianCreate.jsx";
+import PagePenggajianDetail from "./pages/penggajian/PagePenggajianDetail.jsx";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -50,8 +52,8 @@ const App = () => {
             </Route>
             <Route path="/penggajian" element={<PageCommonOutlet />}>
               <Route index={true} element={<PagePenggajianList />} />
-              {/* <Route index={"penggajian"} element={<PagePenggajianCreate />} /> */}
-              {/* <Route index={"detail/:id"} element={<PagePenggajianDetail />} /> */}
+              <Route path={"penggajian"} element={<PagePenggajianCreate />} />
+              <Route path={"detail/:id"} element={<PagePenggajianDetail />} />
               <Route path={"printer"} element={<PagePenggajianPrint />} />
             </Route>
           </Routes>

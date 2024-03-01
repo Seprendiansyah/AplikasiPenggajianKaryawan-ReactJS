@@ -135,8 +135,7 @@ const PageKaryawanDetail = () => {
           <Col md={6}>
             <Card>
               <Card.Body>
-                {JSON.stringify(karyawan)}
-
+                {/* {JSON.stringify(karyawan)} */}
                 <Card.Subtitle className={"mb-3"}>NIK</Card.Subtitle>
                 <Form.Group className={"mb-3"}>
                   <Form.Control
@@ -166,6 +165,7 @@ const PageKaryawanDetail = () => {
                     messages={karyawanValidator.get("nama")}
                   />
                 </Form.Group>
+                <Card.Subtitle className={"mb-3"}>Departemen</Card.Subtitle>
                 <Form.Group className={"mb-3"}>
                   <Form.Control
                     placeholder={"Masukkan Nama Departemen"}
