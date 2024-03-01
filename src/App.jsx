@@ -19,8 +19,8 @@ import PageDepartemenList from "./pages/departemen/PageDepartemenList.jsx";
 import PagePenggajianList from "./pages/penggajian/PagePenggajianList.jsx";
 import PageDepartemenCreate from "./pages/departemen/PageDepartemenCreate.jsx";
 import PageDepartemenDetail from "./pages/departemen/PageDepartemenDetail.jsx";
-import PageKaryawanPrint from "./pages/karyawan/PageKaryawanPrint.jsx";
 import PagePenggajianPrint from "./pages/penggajian/PagePenggajianPrint.jsx";
+import PageKaryawanPrint from "./pages/karyawan/PageKaryawanPrint.jsx";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);

@@ -31,8 +31,14 @@ const PageKaryawanDetail = () => {
     tunjangan: 0,
   });
 
+  const [departemen, setDepartemen] = useState({
+    nama: "",
+  });
+
   const karyawanChangeListener = useChangeListener();
+  const departemenChangeListener = useChangeListener();
   const jabatanChangeListener = useChangeListener();
+
   const karyawanValidator = useValidator({
     nik: [],
     nama: [],
@@ -46,6 +52,10 @@ const PageKaryawanDetail = () => {
     nama: [],
     gajiPokok: [],
     tunjangan: [],
+  });
+
+  const departemenValidator = useValidator({
+    nama: [],
   });
 
   const onKaryawanUpdate = () => {
@@ -125,7 +135,7 @@ const PageKaryawanDetail = () => {
           <Col md={6}>
             <Card>
               <Card.Body>
-            {JSON.stringify(karyawan)}
+                {JSON.stringify(karyawan)}
 
                 <Card.Subtitle className={"mb-3"}>NIK</Card.Subtitle>
                 <Form.Group className={"mb-3"}>
@@ -154,6 +164,25 @@ const PageKaryawanDetail = () => {
                   <Form.Text>Harap form di isi dengan baik</Form.Text>
                   <ComponentMessageValidation
                     messages={karyawanValidator.get("nama")}
+                  />
+                </Form.Group>
+                <Form.Group className={"mb-3"}>
+                  <Form.Control
+                    placeholder={"Masukkan Nama Departemen"}
+                    className={"bg-body-tertiary"}
+                    value={departemen.nama}
+                    name={"nama"}
+                    onChange={(e) =>
+                      departemenChangeListener.onChangeText(
+                        e,
+                        departemen,
+                        setDepartemen
+                      )
+                    }
+                  />
+                  <Form.Text>Harap form di isi dengan baik</Form.Text>
+                  <ComponentMessageValidation
+                    messages={departemenValidator.get("nama")}
                   />
                 </Form.Group>
               </Card.Body>

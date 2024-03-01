@@ -120,9 +120,9 @@ const PagePenggajianList = () => {
                     <th>NIK</th>
                     <th>Nama</th>
                     <th>Jabatan</th>
-                    <th>Departemen</th>
                     <th>Gaji Bersih</th>
                     <th>Action</th>
+                    {/* <th>Departemen</th> */}
                   </tr>
                 </thead>
                 <tbody>   

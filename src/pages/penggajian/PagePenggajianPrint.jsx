@@ -14,55 +14,55 @@ const PagePenggajianPrint = () => {
         var SERVICE = "000018f0-0000-1000-8000-00805f9b34fb";
         var WRITE = "00002af1-0000-1000-8000-00805f9b34fb";
 
-        var DATA =
-            "" +
-            // center align
-            "\x1B" +
-            "\x61" +
-            "\x31" +
-            // double font size
-            "\x1D" +
-            "\x21" +
-            "\x11" +
-            "Uhuy\nCorporation!\n\n" +
-            // normal font size
-            "\x1D" +
-            "\x21" +
-            "\x00" +
-            `${data.nomor}\nat ${data}` +
-            "\x1D" +
-            "\x21" +
-            "\x00" +
-            `${data}` +
-            "\n\n\n\n\n\n\n"; // feed paper
+    var DATA =
+      "" +
+      // center align
+      "\x1B" +
+      "\x61" +
+      "\x31" +
+      // double font size
+      "\x1D" +
+      "\x21" +
+      "\x11" +
+      "Uhuy\nCorporation!\n\n" +
+      // normal font size
+      "\x1D" +
+      "\x21" +
+      "\x00" +
+      `${data.nomor}\nat ${data}` +
+      "\x1D" +
+      "\x21" +
+      "\x00" +
+      `${data}` +
+      "\n\n\n\n\n\n\n"; // feed paper
 
-        var deviceHandle;
-        navigator.bluetooth
-            .requestDevice({ filters: [{ services: [SERVICE] }] })
-            .then((device) => {
-                console.log(device);
-                deviceHandle = device;
-                return device.gatt.connect();
-            })
-            .then((server) => {
-                console.log(server);
-                return server.getPrimaryService(SERVICE);
-            })
-            .then((service) => {
-                console.log(service);
-                return service.getCharacteristic(WRITE);
-            })
-            .then((channel) => {
-                console.log(channel);
-                return channel.writeValue(new TextEncoder("utf-8").encode(DATA));
-            })
-            .catch((error) => {
-                console.error(error);
-            })
-            .finally(() => {
-                deviceHandle.gatt.disconnect();
-            }); // center align + '\x1D' + '\x21' + '\x11' + 'Hello\nBluetooth!\n\n'                    // double font size + '\x1D' + '\x21' + '\x00' + '... from your friends\nat https://qz.io'  // normal font size + '\n\n\n\n\n\n\n';                                                     // feed paper var deviceHandle; navigator.bluetooth.requestDevice({ filters: [{ services: [SERVICE]}] }).then(device => { console.log(device); deviceHandle = device; return device.gatt.connect() }).then(server => { console.log(server); return server.getPrimaryService(SERVICE); }).then(service => { console.log(service); return service.getCharacteristic(WRITE); }).then(channel => { console.log(channel); return channel.writeValue(new TextEncoder("utf-8").encode(DATA)); }).catch(error => { console.error(error) }).finally(() => { deviceHandle.gatt.disconnect(); });
-    };
+    var deviceHandle;
+    navigator.bluetooth
+      .requestDevice({ filters: [{ services: [SERVICE] }] })
+      .then((device) => {
+        console.log(device);
+        deviceHandle = device;
+        return device.gatt.connect();
+      })
+      .then((server) => {
+        console.log(server);
+        return server.getPrimaryService(SERVICE);
+      })
+      .then((service) => {
+        console.log(service);
+        return service.getCharacteristic(WRITE);
+      })
+      .then((channel) => {
+        console.log(channel);
+        return channel.writeValue(new TextEncoder("utf-8").encode(DATA));
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        deviceHandle.gatt.disconnect();
+      }); // center align + '\x1D' + '\x21' + '\x11' + 'Hello\nBluetooth!\n\n'                    // double font size + '\x1D' + '\x21' + '\x00' + '... from your friends\nat https://qz.io'  // normal font size + '\n\n\n\n\n\n\n';                                                     // feed paper var deviceHandle; navigator.bluetooth.requestDevice({ filters: [{ services: [SERVICE]}] }).then(device => { console.log(device); deviceHandle = device; return device.gatt.connect() }).then(server => { console.log(server); return server.getPrimaryService(SERVICE); }).then(service => { console.log(service); return service.getCharacteristic(WRITE); }).then(channel => { console.log(channel); return channel.writeValue(new TextEncoder("utf-8").encode(DATA)); }).catch(error => { console.error(error) }).finally(() => { deviceHandle.gatt.disconnect(); });
+  };
 
     return (
         <>

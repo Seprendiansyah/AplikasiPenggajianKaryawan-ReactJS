@@ -9,6 +9,8 @@ import useMessage from "../../src/libs/hooks/useMessage.jsx";
 import useChangeListener from "../../src/libs/hooks/useChangeListener.jsx";
 import useHTTP from "../../src/libs/hooks/useHTTP.jsx";
 import WidgetJabatanChoice from "../jabatan/WidgetJabatanChoice.jsx";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 import useValidator from "../../src/libs/hooks/useValidator.jsx";
 
 const WidgetKaryawanCreateModal = ({ callback }) => {
@@ -53,6 +55,10 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
     Terlambat: 0,
   });
 
+  const [departemen, setDepartemen] = useState({
+    nama: "",
+  });
+
   // const absensiValidator = useValidator({
   //   Hadir: [],
   //   Alpa: [],
@@ -95,6 +101,7 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
       jabatan,
       potongan: [...potongans],
       absensi,
+      departemen,
     };
 
     http.privateHTTP
@@ -185,6 +192,16 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
               }
             />
           </Form.Group>
+          <Form.Group className={"mb-3"}>
+            <Form.Label>Departemen</Form.Label>
+            <Form.Control
+              name={"nama"}
+              value={departemen.nama}
+              onChange={(e) =>
+                changeListener.onChangeText(e, departemen, setDepartemen)
+              }
+            />
+          </Form.Group>
           <Row>
             <Col md={4} className="mb-3">
               <Form.Group className={"mb-3"}>
@@ -249,6 +266,20 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
               </Form.Group>
             </Col>
           </Row>
+          {/* <Row>
+            <Col md={6}>
+              <Form.Group className={"mb-3"}>
+                <Form.Label>Departemen</Form.Label>
+                <Form.Control
+                  name={"departemen"}
+                  value={departemen.nama}
+                  onChange={(e) =>
+                    changeListener.onChangeText(e, departemen, setDepartemen)
+                  }
+                />
+              </Form.Group>
+            </Col>
+          </Row> */}
           <Row className="mb-3">
             <Col md={6}>
               <WidgetJabatanChoice callback={onCallbackJabatanChoice} />
@@ -257,11 +288,11 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
               {/* {JSON.stringify(jabatan)} */}
               <Table striped={true} bordered={true} responsive={true}>
                 <thead>
-                <tr>
-                  <th>Nama</th>
-                  <th>Gaji Pokok</th>
-                  <th>Tunjangan</th>
-                </tr>
+                  <tr>
+                    <th>Nama</th>
+                    <th>Gaji Pokok</th>
+                    <th>Tunjangan</th>
+                  </tr>
                 </thead>
                 <tbody>
                   <tr>
@@ -270,10 +301,10 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
                     <td>{jabatan.tunjangan}</td>
                   </tr>
                 </tbody>
-                </Table>
-                </Col>
-            </Row>
-            
+              </Table>
+            </Col>
+          </Row>
+
           <Row>
             <Col>
               <WidgetPotonganChoice callback={onCallbackPotonganChoice} />
@@ -290,30 +321,18 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
                 </thead>
                 <tbody>
                   {JSON.stringify(potongans.TotalPotongan)}
-                {potongans.map((value, index) => (
-                  <tr key={index}>
-                    <td>{value.nama}</td>
-                    <td>{value.potongan / 100 }</td>
-                    <td>{value.TotalPotongan}</td>
-                    <td>
-                      <Button size={"sm"} onClick={() => onItemRemove(value)}>Hapus</Button>
-                    </td>
-                  </tr>
-                ))}
-                </tbody>
-                <tbody>
-                  {/* <tr>
-                  <th>Berat</th>
-                  <td>
-                    <Form.Control
-                      placeholder={"dalam Kg"}
-                      value={terima.berat}
-                      type={"number"}
-                      name={"berat"}
-                      onChange={(e) => changeListener.onChangeNumber(e, terima, setTerima)}
-                    />
-                  </td>
-                </tr> */}
+                  {potongans.map((value, index) => (
+                    <tr key={index}>
+                      <td>{value.nama}</td>
+                      <td>{value.potongan / 100}</td>
+                      <td>{value.TotalPotongan}</td>
+                      <td>
+                        <Button size={"sm"} onClick={() => onItemRemove(value)}>
+                          Hapus
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </Table>
             </Col>
