@@ -14,22 +14,22 @@ import { useEffect, useRef, useState } from "react";
 import useMessage from "../../libs/hooks/useMessage.jsx";
 import { BASE_URL } from "../../libs/config/settings.js";
 import useURLResolver from "../../libs/hooks/useURLResolver.jsx";
-import { Link, Navigate, json, useNavigate } from "react-router-dom";
-import WidgetPenggajianCreateModal from "../../../widget/penggajian/WidgetPenggajianCreateModal.jsx";
+import { Link, json, useNavigate } from "react-router-dom";
 
-const PagePenggajianList = () => {
+const PageJabatanList = () => {
   const navigate = useNavigate();
+
   const http = useHTTP();
   const jwt = useJWT();
   const message = useMessage();
-  const [daftarPenggajian, setDaftarPenggajian] = useState([]);
-  const [daftarPenggajianPagination, setDaftarPenggajianPagination] = useState(
-    {}
-  );
-  const penggajianSearch = useRef({ value: "" });
 
-  const onPenggajianList = (params) => {
-    const url = `${BASE_URL}/penggajian/`;
+  const [daftarJabatan, setDaftarJabatan] = useState([]);
+  const [daftarJabatanPagination, setDaftarJabatanPagination] = useState({});
+  const jabatanSearch = useRef({ value: "" });
+
+  const onJabatanList = (params) => {
+    const url = `${BASE_URL}/jabatan/`;
+
     const config = {
       headers: {
         Authorization: jwt.get(),
@@ -40,12 +40,18 @@ const PagePenggajianList = () => {
       .get(url, config)
       .then((response) => {
         const { results, ...pagination } = response.data;
-        setDaftarPenggajianPagination(pagination);
-        setDaftarPenggajian(results);
+        setDaftarJabatanPagination(pagination);
+        setDaftarJabatan(results);
       })
       .catch((error) => {
         message.error(error);
       });
+  };
+
+  const onJabatanSearch = (e) => {
+    if (e.key == "Enter") {
+      onJabatanList({ search: jabatanSearch.current.value });
+    }
   };
 
   const formatCurrency = (num) => {
@@ -55,35 +61,23 @@ const PagePenggajianList = () => {
     }).format(num);
   };
 
-  const onPenggajianSearch = (e) => {
-    if (e.key == "Enter") {
-      onPenggajianList({ search: penggajianSearch.current.value });
-    }
+  const onJabatanPagination = (page) => {
+    onJabatanList({ search: jabatanSearch.current.value, page });
   };
-
-  const onPenggajianPagination = (page) => {
-    onPenggajianList({ search: penggajianSearch.current.value, page });
-  };
-
-  // const onPenggajianPrint = useEffect(() => {
-  //   onPenggajianList();
-  // }, []);
 
   useEffect(() => {
-    onPenggajianList();
+    onJabatanList();
   }, []);
-  const karyawan = daftarPenggajian;
+
   return (
     <>
       <Container className={"mt-4"}>
         <Row className={"mb-4"}>
           <Col>
-            <h3>Daftar Karyawan</h3>
+            <h3>Daftar Jabatan</h3>
           </Col>
           <Col className={"d-flex justify-content-end"}>
-            <Button onClick={() => navigate("penggajian")}>
-              Tambah Penggajian
-            </Button>
+            <Button onClick={() => navigate("new")}>Tambah Jabatan</Button>
           </Col>
         </Row>
         <Row className={"mb-4"}>
@@ -94,8 +88,8 @@ const PagePenggajianList = () => {
                   <Col>
                     <Form.Group>
                       <Form.Control
-                        ref={penggajianSearch}
-                        onKeyDown={onPenggajianSearch}
+                        ref={jabatanSearch}
+                        onKeyDown={onJabatanSearch}
                         placeholder={"Search..."}
                         className={"w-50 bg-body-tertiary"}
                       />
@@ -107,55 +101,46 @@ const PagePenggajianList = () => {
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>NIK</th>
-                    <th>Nama</th>
-                    <th>Jabatan</th>
-                    <th>Departemen</th>
-                    <th>Gaji Bersih</th>
-                    <th>Action</th>
+                    <th>Gaji Pokok</th>
+                    <th>Tunjangan</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {daftarPenggajian.map((value) => (
+                  {daftarJabatan.map((value) => (
                     <tr key={value._id}>
-                      <td>{value._id}</td>
-                      <td>{value.karyawanref.nik}</td>
-                      <td>{value.karyawanref.nama}</td>
-                      <td>{value.karyawanref.jabatan.nama}</td>
-                      <td>{value.karyawanref.departemen.nama}</td>
-                      <td>{formatCurrency(value.totalGaji)}</td>
                       <td>
-                        <Button
-                          onClick={() => navigate("printer", { state: value })}
+                        <Link
+                          to={`/jabatan/detail/${value._id}`}
+                          className={"text-decoration-none"}
                         >
-                          Print
-                        </Button>
+                          {value._id}
+                        </Link>
                       </td>
+                      <td>{value.nama}</td>
+                      <td>{formatCurrency(value.gajiPokok)}</td>
+                      <td>{formatCurrency(value.tunjangan)}</td>
                     </tr>
                   ))}
                 </tbody>
               </Table>
-
               <Card.Footer>
                 <Pagination>
                   <Pagination.First
-                    disabled={!daftarPenggajianPagination.previous}
-                    onClick={() => onPenggajianPagination(1)}
+                    disabled={!daftarJabatanPagination.previous}
+                    onClick={() => onJabatanPagination(1)}
                   />
-                  {daftarPenggajianPagination?.pages?.map((page) => (
+                  {daftarJabatanPagination?.pages?.map((page) => (
                     <Pagination.Item
-                      onClick={() => onPenggajianPagination(page.page)}
+                      onClick={() => onJabatanPagination(page.page)}
                       key={page.page}
                     >
                       {page.page}
                     </Pagination.Item>
                   ))}
                   <Pagination.Last
-                    disabled={!daftarPenggajianPagination.next}
+                    disabled={!daftarJabatanPagination.next}
                     onClick={() =>
-                      onPenggajianPagination(
-                        daftarPenggajianPagination.totalPage
-                      )
+                      onJabatanPagination(daftarJabatanPagination.totalPage)
                     }
                   />
                 </Pagination>
@@ -167,5 +152,4 @@ const PagePenggajianList = () => {
     </>
   );
 };
-
-export default PagePenggajianList;
+export default PageJabatanList;

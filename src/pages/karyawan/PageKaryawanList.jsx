@@ -54,6 +54,13 @@ const PageKaryawanList = () => {
     }
   };
 
+  const formatCurrency = (num) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(num);
+  };
+
   const onKaryawanPagination = (page) => {
     onKaryawanList({ search: karyawanSearch.current.value, page });
   };
@@ -98,10 +105,10 @@ const PageKaryawanList = () => {
                     <th>NIK</th>
                     <th>Nama</th>
                     <th>Jabatan</th>
+                    <th>Departemen</th>
                     <th>Gaji Pokok</th>
                     <th>Tunjangan</th>
                     {/* <th>Action</th> */}
-                    <th>Departemen</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -118,9 +125,9 @@ const PageKaryawanList = () => {
                       <td>{value.nik}</td>
                       <td>{value.nama}</td>
                       <td>{value.jabatan.nama}</td>
-                      <td>{value.jabatan.gajiPokok}</td>
-                      <td>{value.jabatan.tunjangan}</td>
                       <td>{value.departemen.nama}</td>
+                      <td>{formatCurrency(value.jabatan.gajiPokok)}</td>
+                      <td>{formatCurrency(value.jabatan.tunjangan)}</td>
                     </tr>
                   ))}
                 </tbody>

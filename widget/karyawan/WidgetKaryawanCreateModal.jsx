@@ -12,6 +12,7 @@ import WidgetJabatanChoice from "../jabatan/WidgetJabatanChoice.jsx";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import useValidator from "../../src/libs/hooks/useValidator.jsx";
+import WidgetDepartemenChoice from "../departemen/WidgetDepartemenChoice.jsx";
 
 const WidgetKaryawanCreateModal = ({ callback }) => {
   const navigate = useNavigate();
@@ -83,10 +84,12 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
     daftarPotongans([...potongans, potongan]);
   };
 
-  const [jabatans, setdaftarJabatans] = useState([]);
-
   const onCallbackJabatanChoice = (jabatan) => {
     setJabatan(jabatan);
+  };
+
+  const onCallbackDepartemenChoice = (departemen) => {
+    setDepartemen(departemen);
   };
 
   const onKaryawanCreate = () => {
@@ -125,10 +128,12 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
     daftarPotongans(temps);
   };
 
-  // const onItemRemovee = (jabatan) => {
-  //   const temps = jabatans.filter((value) => value._id !== jabatan._id);
-  //   setdaftarJabatans(temps);
-  // };
+  const formatCurrency = (num) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(num);
+  };
 
   return (
     <>
@@ -192,7 +197,7 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
               }
             />
           </Form.Group>
-          <Form.Group className={"mb-3"}>
+          {/* <Form.Group className={"mb-3"}>
             <Form.Label>Departemen</Form.Label>
             <Form.Control
               name={"nama"}
@@ -201,7 +206,7 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
                 changeListener.onChangeText(e, departemen, setDepartemen)
               }
             />
-          </Form.Group>
+          </Form.Group> */}
           <Row>
             <Col md={4} className="mb-3">
               <Form.Group className={"mb-3"}>
@@ -266,6 +271,26 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
               </Form.Group>
             </Col>
           </Row>
+          <Row className="mb-3">
+            <Col md={6}>
+              <WidgetDepartemenChoice callback={onCallbackDepartemenChoice} />
+            </Col>
+            <Col md={6}>
+              {/* {JSON.stringify(departemen)} */}
+              <Table striped={true} bordered={true} responsive={true}>
+                <thead>
+                  <tr>
+                    <th>Nama</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{departemen.nama}</td>
+                  </tr>
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
           {/* <Row>
             <Col md={6}>
               <Form.Group className={"mb-3"}>
@@ -297,14 +322,13 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
                 <tbody>
                   <tr>
                     <td>{jabatan.nama}</td>
-                    <td>{jabatan.gajiPokok}</td>
-                    <td>{jabatan.tunjangan}</td>
+                    <td>{formatCurrency(jabatan.gajiPokok)}</td>
+                    <td>{formatCurrency(jabatan.tunjangan)}</td>
                   </tr>
                 </tbody>
               </Table>
             </Col>
           </Row>
-
           <Row>
             <Col>
               <WidgetPotonganChoice callback={onCallbackPotonganChoice} />
@@ -315,7 +339,7 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
                   <tr>
                     <th>Nama</th>
                     <th>Potongan</th>
-                    <th>TotalPotongan</th>
+                    {/* <th>TotalPotongan</th> */}
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -325,7 +349,7 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
                     <tr key={index}>
                       <td>{value.nama}</td>
                       <td>{value.potongan / 100}</td>
-                      <td>{value.TotalPotongan}</td>
+                      {/* <td>{value.TotalPotongan}</td> */}
                       <td>
                         <Button size={"sm"} onClick={() => onItemRemove(value)}>
                           Hapus

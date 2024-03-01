@@ -23,6 +23,9 @@ import PagePenggajianPrint from "./pages/penggajian/PagePenggajianPrint.jsx";
 import PageKaryawanPrint from "./pages/karyawan/PageKaryawanPrint.jsx";
 import PagePenggajianCreate from "./pages/penggajian/PagePenggajianCreate.jsx";
 import PagePenggajianDetail from "./pages/penggajian/PagePenggajianDetail.jsx";
+import PageJabatanList from "./pages/jabatan/PageJabatanList.jsx";
+import PageJabatanCreate from "./pages/jabatan/PageJabatanCreate.jsx";
+import PageJabatanDetail from "./pages/jabatan/PageJabatanDetail.jsx";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -36,7 +39,6 @@ const App = () => {
           <Routes>
             <Route path="/" element={<PageCommonOutlet />}>
               <Route index={true} element={<PageKaryawanList />} />
-              {/* <Route path={"new"} element={<PageKaryawanCreate />} /> */}
               <Route path={"detail/:id"} element={<PageKaryawanDetail />} />
               <Route path={"print"} element={<PageKaryawanPrint />} />
             </Route>
@@ -55,6 +57,11 @@ const App = () => {
               <Route path={"penggajian"} element={<PagePenggajianCreate />} />
               <Route path={"detail/:id"} element={<PagePenggajianDetail />} />
               <Route path={"printer"} element={<PagePenggajianPrint />} />
+            </Route>
+            <Route path="/jabatan" element={<PageCommonOutlet />}>
+              <Route index={true} element={<PageJabatanList />} />
+              <Route path={"new"} element={<PageJabatanCreate />} />
+              <Route path={"detail/:id"} element={<PageJabatanDetail />} />
             </Route>
           </Routes>
         </HashRouter>
