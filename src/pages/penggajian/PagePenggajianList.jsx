@@ -122,23 +122,27 @@ const PagePenggajianList = () => {
                     <th>NIK</th>
                     <th>Nama</th>
                     <th>Jabatan</th>
+                    <th>Departemen</th>
                     <th>Gaji Bersih</th>
                     <th>Action</th>
-                    {/* <th>Departemen</th> */}
                   </tr>
                 </thead>
-                <tbody>   
+                <tbody>
                   {daftarPenggajian.map((value) => (
                     <tr key={value._id}>
-                      <td>
-                          {value._id}
-                      </td>
+                      <td>{value._id}</td>
                       <td>{value.karyawanref.nik}</td>
                       <td>{value.karyawanref.nama}</td>
                       <td>{value.karyawanref.jabatan.nama}</td>
                       <td>{value.karyawanref.departemen.nama}</td>
                       <td>{value.totalGaji}</td>
-                      <td><Button onClick={() => navigate("printer", {state: value})}>Print</Button></td>
+                      <td>
+                        <Button
+                          onClick={() => navigate("printer", { state: value })}
+                        >
+                          Print
+                        </Button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
