@@ -5,22 +5,11 @@ import Barcode from "react-barcode";
 const PagePenggajianPrint = () => {
   const location = useLocation();
     const navigate = useNavigate();
-    const data = location.state.karyawanref;
+    const data = location.state;
     const jumlahPotonganAbsensi = (alpa, terlambat) => {
         const jumlah = alpa + terlambat;
         return jumlah;
     }
-    const hitungTotalPajak = (data) => {
-        let total = 0;
-        data.potongan.forEach((item) => {
-            total += item.jumlah;
-        });
-        return total;
-    };
-    const totalPotongan = (absensi, pajak) => {
-        const jumlah = absensi + pajak;
-        return jumlah;
-    };
     const onBluetoothVSCConnect = () => {
         var SERVICE = "000018f0-0000-1000-8000-00805f9b34fb";
         var WRITE = "00002af1-0000-1000-8000-00805f9b34fb";
@@ -82,7 +71,7 @@ const PagePenggajianPrint = () => {
                 <h5>Periode bulan : Januari </h5>
                 <Row className={"mb-3"}>
                     <Col className={"d-flex justify-content-end"}>
-                        <Barcode value={data._id} />;
+                        <Barcode value={data.karyawanref._id} />;
                     </Col>
                 </Row>
                 <Row>
@@ -90,7 +79,7 @@ const PagePenggajianPrint = () => {
                         {/* <Table borderless={true}>
                             <tr>
                                 <th>Nama</th>
-                                <td>{data.nama}</td>
+                                <td>{data.karyawanref.nama}</td>
                             </tr>
                         </Table> */}
                         <h3 className="mb-4">Profil Karyawan</h3>
@@ -98,23 +87,23 @@ const PagePenggajianPrint = () => {
                             <tbody>
                                 <tr>
                                     <th>Nama</th>
-                                    <td>{data.nama}</td>
+                                    <td>{data.karyawanref.nama}</td>
                                 </tr>
                                 <tr>
                                     <th>NIK</th>
-                                    <td>{data.nik}</td>
+                                    <td>{data.karyawanref.nik}</td>
                                 </tr>
                                 <tr>
                                     <th>Jabatan</th>
-                                    <td>{data.jabatan.nama}</td>
+                                    <td>{data.karyawanref.jabatan.nama}</td>
                                 </tr>
                                 <tr>
                                     <th>Departemen</th>
-                                    <td>IT belum diaplikasikan</td>
+                                    <td>{data.karyawanref.departemen.nama}</td>
                                 </tr>
                                 <tr>
                                     <th>Gaji</th>
-                                    <td>{data.jabatan.gajiPokok}</td>
+                                    <td>{data.karyawanref.jabatan.gajiPokok}</td>
                                 </tr>
                             </tbody>
                         </Table>
@@ -129,7 +118,7 @@ const PagePenggajianPrint = () => {
                                     <th>Pajak</th>
                                     <td></td>
                                 </tr>
-                                {data.potongan.map((item, index) => (
+                                {data.karyawanref.potongan.map((item, index) => (
                                     <tr key={index}>
                                         <th>{item.nama} {item.potongan}%</th>
                                         <td>{item.jumlahpotongan}</td>
@@ -137,7 +126,7 @@ const PagePenggajianPrint = () => {
                                 ))}
                                 <tr>
                                     <th>Absensi</th>
-                                    <td>{jumlahPotonganAbsensi(data.absensi.nominalAlpa, data.absensi.nominalTerlambat)}</td>
+                                    <td>{data.karyawanref.absensi.jumlahpotonganAbsensi}</td>
                                 </tr>
                             </tbody>
 
@@ -146,7 +135,7 @@ const PagePenggajianPrint = () => {
                             <tbody >
                                 <tr>
                                     <th>Total Potongan</th>
-                                    <td>135000</td>
+                                    <td>{data.totalPotongan}</td>
 
                                 </tr>
                             </tbody>
@@ -159,7 +148,7 @@ const PagePenggajianPrint = () => {
 
                                 <tr>
                                     <th>Tunjangan jabatan</th>
-                                    <td>{data.jabatan.tunjangan}</td>
+                                    <td>{data.karyawanref.jabatan.tunjangan}</td>
                                 </tr>
                                 <tr>
                                     <th>Tunjangan Departemen</th>
@@ -180,55 +169,14 @@ const PagePenggajianPrint = () => {
                             <tbody >
                                 <tr>
                                     <th>Total Gaji Bersih</th>
-                                    <td>10665000 </td>
+                                    <td>{data.totalGaji} </td>
 
                                 </tr>
                             </tbody>
                         </Table>
                     </Col>
                 </Row>
-                {/* <Row className={"mb-3"}>
-          <Col>
-            <Table borderless={true} striped={true}>
-              <thead>
-              <tr>
-                <th>Nama</th>
-              </tr>
-              </thead>
-              <tbody>
-              {location.state.items.map((value) => (
-                <tr key={value._id}>
-                  <td>{value.nama}</td>
-                </tr>
-              ))}
-              </tbody>
-            </Table>
-          </Col>
-        </Row>
-        <Row className={"mb-3"}>
-          <Col md={6}>
-            <Table>
-              <tbody>
-              <tr>
-                <th>Berat</th>
-                <td>{location.state.berat}Kg</td>
-              </tr>
-              <tr>
-                <th>Total</th>
-                <td>{location.state.total}</td>
-              </tr>
-              <tr>
-                <th>Uang Muka/Dibayar</th>
-                <td>{location.state.uangMuka}</td>
-              </tr>
-              <tr>
-                <th>Sisa</th>
-                <td>{location.state.sisa}</td>
-              </tr>
-              </tbody>
-            </Table>
-          </Col>
-        </Row> */}
+               
                 <Row>
                     <Col className={"d-flex justify-content-center gap-3"}>
                         <Button

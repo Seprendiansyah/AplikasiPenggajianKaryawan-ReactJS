@@ -126,7 +126,6 @@ const PagePenggajianList = () => {
                   </tr>
                 </thead>
                 <tbody>   
-                  {JSON.stringify(karyawan)}
                   {daftarPenggajian.map((value) => (
                     <tr key={value._id}>
                       <td>
@@ -140,8 +139,8 @@ const PagePenggajianList = () => {
                       <td>{value.nik}</td>
                       <td>{value.karyawanref.nama}</td>
                       <td>{value.karyawanref.jabatan.nama}</td>
-                      {/* <td>{value.departemen.nama}</td> */}
-                      {/* <td>{value.totalGaji}</td> */}
+                      <td>{value.karyawanref.departemen.nama}</td>
+                      <td>{value.totalGaji}</td>
                       <td><Button onClick={() => navigate("printer", {state: value})}>Print</Button></td>
                     </tr>
                   ))}
