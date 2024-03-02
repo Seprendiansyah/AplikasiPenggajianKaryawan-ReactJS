@@ -17,7 +17,15 @@ const LibComponentNavbar = () => {
   return (
     <Navbar expand="lg" bg="dark" data-bs-theme="dark" className="d-print-none">
       <Container>
-        <Navbar.Brand href="#">Penggajian Absensi</Navbar.Brand>
+        <Navbar.Brand href="#">
+          <img
+            src="public/B.png"
+            width="40"
+            height="40"
+            className="d-inline-block align-top"
+            alt="Logo Penggajian Absensi"
+          />
+          Penggajian Absensi</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         {applcation.isAuthenticated && (
           <Navbar.Collapse id="basic-navbar-nav">

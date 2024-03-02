@@ -1,15 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Col, Container, Row, Table } from "react-bootstrap";
-import Barcode from "react-barcode";
 
 const PagePenggajianPrint = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const data = location.state;
-  const jumlahPotonganAbsensi = (alpa, terlambat) => {
-    const jumlah = alpa + terlambat;
-    return jumlah;
-  };
 
   const handlePrint = () => {
     window.print();
@@ -20,6 +15,36 @@ const PagePenggajianPrint = () => {
       style: "currency",
       currency: "IDR",
     }).format(num);
+  };
+  const Bulan = (bulan) => {
+    switch (bulan) {
+      case 1:
+        return "Januari";
+      case 2:
+        return "Februari";
+      case 3:
+        return "Maret";
+      case 4:
+        return "April";
+      case 5:
+        return "Mei";
+      case 6:
+        return "Juni";
+      case 7:
+        return "Juli";
+      case 8:
+        return "Agustus";
+      case 9:
+        return "September";
+      case 10:
+        return "Oktober";
+      case 11:
+        return "November";
+      case 12:
+        return "Desember";
+      default:
+        return "Bulan tidak valid";
+    }
   };
 
   //   const onBluetoothVSCConnect = () => {
@@ -79,23 +104,28 @@ const PagePenggajianPrint = () => {
   return (
     <>
       <Container className={"mt-4 mb-4"} fluid={true}>
-        <h1 className={"d-flex justify-content-center mb-5"}>Slip Gaji</h1>
-        <h5 className={"d-flex justify-content-center mb-5"}>
-          Periode bulan : Januari
-        </h5>
-        <Row className={"mb-3"}>
-          {/* <Col className={"d-flex justify-content-end"}>
-            <Barcode value={data.karyawanref._id} />;
-          </Col> */}
-        </Row>
+      <h2 className="d-flex justify-content-center mb-4">
+      <img
+            src="public/B.png"
+            width="40"
+            height="40"
+            className="d-inline-block align-top"
+            alt="Logo Penggajian Absensi"
+          />
+        PT Teknologi Canggih Indonesia</h2>
+      <h4 className="d-flex justify-content-center mb-2">Inovasi Digital Nusantara</h4>
+      <h3 className="separator mb-4"
+      style={{
+        height: "2px",
+        backgroundColor: "#000000",
+      }}
+    ></h3>
+      <h3 className="d-flex justify-content-center">Slip Gaji Karyawan</h3>
+      <h5 className="d-flex justify-content-center mb-5">
+        Periode bulan: {Bulan(data.periodeGajiBulan)}
+      </h5>
         <Row>
           <Col>
-            {/* <Table borderless={true}>
-                            <tr>
-                                <th>Nama</th>
-                                <td>{data.karyawanref.nama}</td>
-                            </tr>
-                        </Table> */}
             <h3 className="mb-4">Profil Karyawan</h3>
             <Table borderless={true}>
               <tbody>
@@ -164,7 +194,7 @@ const PagePenggajianPrint = () => {
               <tbody>
                 <h2>Tunjangan</h2>
                 <tr>
-                  <th>Tunjangan jabatan</th>
+                  <th>Tunjangan Jabatan</th>
                   <td>{formatCurrency(data.karyawanref.jabatan.tunjangan)}</td>
                 </tr>
                 <tr>
@@ -184,12 +214,22 @@ const PagePenggajianPrint = () => {
             <Table>
               <tbody>
                 <tr>
+                  <th>Total Tunjangan</th>
+                  <td>{formatCurrency(data.karyawanref.jabatan.tunjangan)} </td>
+                </tr>
+              </tbody>
+            </Table>
+          </Col>
+        </Row>
+        <Row>
+        <Table>
+              <tbody>
+                <tr>
                   <th>Total Gaji Bersih</th>
                   <td>{formatCurrency(data.totalGaji)} </td>
                 </tr>
               </tbody>
             </Table>
-          </Col>
         </Row>
 
         <Row>

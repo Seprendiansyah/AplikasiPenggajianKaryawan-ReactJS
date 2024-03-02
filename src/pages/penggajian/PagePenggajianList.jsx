@@ -16,6 +16,7 @@ import { BASE_URL } from "../../libs/config/settings.js";
 import useURLResolver from "../../libs/hooks/useURLResolver.jsx";
 import { Link, Navigate, json, useNavigate } from "react-router-dom";
 import WidgetPenggajianCreateModal from "../../../widget/penggajian/WidgetPenggajianCreateModal.jsx";
+import WidgetKaryawanCreateModal from "../../../widget/karyawan/WidgetKaryawanCreateModal.jsx";
 
 const PagePenggajianList = () => {
   const navigate = useNavigate();
@@ -81,9 +82,11 @@ const PagePenggajianList = () => {
             <h3>Daftar Karyawan</h3>
           </Col>
           <Col className={"d-flex justify-content-end"}>
-            <Button onClick={() => navigate("penggajian")}>
+            {/* <Button onClick={() => navigate("penggajian")}> */}
+            <WidgetPenggajianCreateModal callback={onPenggajianList} >
+
               Tambah Penggajian
-            </Button>
+            </WidgetPenggajianCreateModal>
           </Col>
         </Row>
         <Row className={"mb-4"}>
