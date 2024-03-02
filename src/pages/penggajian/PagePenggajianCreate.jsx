@@ -53,7 +53,7 @@ const PagePenggajianCreate = () => {
             <Card>
               <Card.Body>
                 <Card.Subtitle className={"mb-3"}>
-                  Nama Penggajian
+                  ID
                 </Card.Subtitle>
                 <Form.Group className={"mb-3"}>
                   <Form.Control
