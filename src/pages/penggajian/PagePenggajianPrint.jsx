@@ -104,26 +104,26 @@ const PagePenggajianPrint = () => {
   return (
     <>
       <Container className={"mt-4 mb-4"} fluid={true}>
-      <h2 className="d-flex justify-content-center mb-4">
-      <img
+        <h2 className="d-flex justify-content-center mb-4">
+          <img
             src="public/B.png"
             width="40"
             height="40"
             className="d-inline-block align-top"
             alt="Logo Penggajian Absensi"
           />
-        PT Teknologi Canggih Indonesia</h2>
-      <h4 className="d-flex justify-content-center mb-2">Inovasi Digital Nusantara</h4>
-      <h3 className="separator mb-4"
-      style={{
-        height: "2px",
-        backgroundColor: "#000000",
-      }}
-    ></h3>
-      <h3 className="d-flex justify-content-center">Slip Gaji Karyawan</h3>
-      <h5 className="d-flex justify-content-center mb-5">
-        Periode bulan: {Bulan(data.periodeGajiBulan)}
-      </h5>
+          PT Teknologi Canggih Indonesia</h2>
+        <h4 className="d-flex justify-content-center mb-2">Inovasi Digital Nusantara</h4>
+        <h3 className="separator mb-4"
+          style={{
+            height: "2px",
+            backgroundColor: "#000000",
+          }}
+        ></h3>
+        <h3 className="d-flex justify-content-center">Slip Gaji Karyawan</h3>
+        <h5 className="d-flex justify-content-center mb-5">
+          Periode bulan: {Bulan(data.periodeGajiBulan)}
+        </h5>
         <Row>
           <Col>
             <h3 className="mb-4">Profil Karyawan</h3>
@@ -222,14 +222,16 @@ const PagePenggajianPrint = () => {
           </Col>
         </Row>
         <Row>
-        <Table>
-              <tbody>
-                <tr>
-                  <th>Total Gaji Bersih</th>
-                  <td>{formatCurrency(data.totalGaji)} </td>
-                </tr>
-              </tbody>
-            </Table>
+          <Table>
+            <tbody>
+              <tr striped bordered hover >
+                <th>Total Gaji Bersih</th>
+              </tr>
+              <th>
+                <td className="d-flex justify-content-center gap-3">{formatCurrency(data.totalGaji)} </td>
+              </th>
+            </tbody>
+          </Table>
         </Row>
 
         <Row>

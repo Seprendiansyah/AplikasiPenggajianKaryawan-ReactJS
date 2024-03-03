@@ -23,15 +23,6 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
   const message = useMessage();
   const changeListener = useChangeListener();
 
-  // const [karyawan, setKaryawan] = useState({
-  //   nik: "",
-  //   nama: "",
-  //   alamat: "",
-  //   no_Telepon: "",
-  //   bank: "",
-  //   no_rekening: "",
-  // })
-
   const [penggajian, setPenggajian] = useState({
     karyawanref:"",
     periodeGajiBulan: ""
@@ -44,24 +35,15 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
     bank: "",
     no_rekening: "",
   })
-
-  const [potongans, daftarPotongans] = useState([])
-
-  const onCallbackPotonganChoice = (potongan) => {
-    const potonganExist = potongans.find((obj) => obj._id === potongan._id);
-
-    if (potonganExist) {
-      return;
-    }
-
-    daftarPotongans([...potongans, potongan])
-  }
-
   const [karyawans, setdaftarKaryawans] = useState([])
 
-  const onCallbackKaryawanChoice = (karyawan) => {
-    setKaryawan(karyawan);
-  }
+  const onCallbackKaryawanChoice = (selectedKaryawan) => {
+    setKaryawan(selectedKaryawan);
+    setPenggajian((prevPenggajian) => ({
+      ...prevPenggajian,
+      karyawanref: selectedKaryawan._id
+    }));
+  };
 
   const onPenggajianCreate = () => {
     const url = `${BASE_URL}/penggajian/`;
@@ -86,11 +68,6 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
     })
   }
 
-  const onItemRemove = (potongan) => {
-    const temps = potongans.filter((value) => value._id !== potongan._id);
-    daftarPotongans(temps);
-  }
-
   const onItemRemovee = (karyawan) => {
     const temps = karyawans.filter((value) => value._id !== karyawan._id);
     setdaftarKaryawans(temps);
@@ -105,7 +82,28 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
           <Modal.Title>Penggajian</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
+          <Row className="mb-3">
+            <Col md={6}>
+              <WidgetKaryawanChoice callback={onCallbackKaryawanChoice} />
+            </Col>
+            <Col md={6}>
+              <Table striped={true} bordered={true} responsive={true}>
+                <thead>
+                  <tr>
+                    <th>NIK</th>
+                    <th>Nama</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{karyawan.nik}</td>
+                    <td>{karyawan.nama}</td>
+                  </tr>
+                </tbody>
+                
+              </Table>
+            </Col>
+          </Row> 
           <Form.Group className={"mb-3"}>
             <Form.Label>Periode</Form.Label>
             <Form.Control
@@ -122,31 +120,6 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
               }
             />
           </Form.Group>
-          <Row className="mb-3">
-            <Col md={6}>
-              <WidgetKaryawanChoice callback={onCallbackKaryawanChoice} />
-            </Col>
-            <Col md={6}>
-              {JSON.stringify(karyawan._id)}
-
-              <Table striped={true} bordered={true} responsive={true}>
-                <thead>
-                  <tr>
-                    <th>NIK</th>
-                    <th>Nama</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{karyawan.nik}</td>
-                    <td>{karyawan.nama}</td>
-                    
-                  </tr>
-                </tbody>
-                
-              </Table>
-            </Col>
-          </Row> 
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={onPenggajianCreate}>Simpan</Button>
