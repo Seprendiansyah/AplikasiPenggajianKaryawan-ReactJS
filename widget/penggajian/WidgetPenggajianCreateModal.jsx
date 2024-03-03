@@ -27,6 +27,7 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
     karyawanref: "",
     periodeGajiBulan: "",
   });
+
   const [karyawan, setKaryawan] = useState({
     nik: "",
     nama: "",
@@ -50,8 +51,12 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
 
   const [karyawans, setdaftarKaryawans] = useState([]);
 
-  const onCallbackKaryawanChoice = (karyawan) => {
-    setKaryawan(karyawan);
+  const onCallbackKaryawanChoice = (selectedKaryawan) => {
+    setKaryawan(selectedKaryawan);
+    setPenggajian((prevPenggajian) => ({
+      ...prevPenggajian,
+      karyawanref: selectedKaryawan._id,
+    }));
   };
 
   const onPenggajianCreate = () => {
@@ -104,6 +109,29 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
           <Modal.Title>Penggajian</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <Row className="mb-3">
+            <Col md={6}>
+              <WidgetKaryawanChoice callback={onCallbackKaryawanChoice} />
+            </Col>
+            <Col md={6}>
+              <Table striped={true} bordered={true} responsive={true}>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>NIK</th>
+                    <th>Nama</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{karyawan._id}</td>
+                    <td>{karyawan.nik}</td>
+                    <td>{karyawan.nama}</td>
+                  </tr>
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
           <Form.Group className={"mb-3"}>
             <Form.Label>Periode</Form.Label>
             <Form.Control
@@ -116,29 +144,6 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
               }
             />
           </Form.Group>
-          <Row className="mb-3">
-            <Col md={6}>
-              <WidgetKaryawanChoice callback={onCallbackKaryawanChoice} />
-            </Col>
-            <Col md={6}>
-              {JSON.stringify(karyawan._id)}
-
-              <Table striped={true} bordered={true} responsive={true}>
-                <thead>
-                  <tr>
-                    <th>NIK</th>
-                    <th>Nama</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{karyawan.nik}</td>
-                    <td>{karyawan.nama}</td>
-                  </tr>
-                </tbody>
-              </Table>
-            </Col>
-          </Row>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={onPenggajianCreate}>Simpan</Button>

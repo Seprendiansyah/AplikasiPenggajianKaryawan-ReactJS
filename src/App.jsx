@@ -27,7 +27,7 @@ import PageJabatanCreate from "./pages/jabatan/PageJabatanCreate.jsx";
 import PageJabatanDetail from "./pages/jabatan/PageJabatanDetail.jsx";
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
     <>
