@@ -348,7 +348,7 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
                   {potongans.map((value, index) => (
                     <tr key={index}>
                       <td>{value.nama}</td>
-                      <td>{value.potongan }%</td>
+                      <td>{value.potongan}%</td>
                       <td>
                         <Button size={"sm"} onClick={() => onItemRemove(value)}>
                           Hapus

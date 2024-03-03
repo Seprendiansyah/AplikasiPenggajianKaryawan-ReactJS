@@ -33,9 +33,9 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
   // })
 
   const [penggajian, setPenggajian] = useState({
-    karyawanref:"",
-    periodeGajiBulan: ""
-  })
+    karyawanref: "",
+    periodeGajiBulan: "",
+  });
   const [karyawan, setKaryawan] = useState({
     nik: "",
     nama: "",
@@ -43,9 +43,9 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
     no_Telepon: "",
     bank: "",
     no_rekening: "",
-  })
+  });
 
-  const [potongans, daftarPotongans] = useState([])
+  const [potongans, daftarPotongans] = useState([]);
 
   const onCallbackPotonganChoice = (potongan) => {
     const potonganExist = potongans.find((obj) => obj._id === potongan._id);
@@ -54,58 +54,65 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
       return;
     }
 
-    daftarPotongans([...potongans, potongan])
-  }
+    daftarPotongans([...potongans, potongan]);
+  };
 
-  const [karyawans, setdaftarKaryawans] = useState([])
+  const [karyawans, setdaftarKaryawans] = useState([]);
 
   const onCallbackKaryawanChoice = (karyawan) => {
     setKaryawan(karyawan);
-  }
+  };
 
   const onPenggajianCreate = () => {
     const url = `${BASE_URL}/penggajian/`;
     const config = {
       headers: {
-        Authorization: jwt.get()
-      }
-    }
+        Authorization: jwt.get(),
+      },
+    };
     const payload = {
       ...penggajian,
       karyawan,
+    };
 
-    }
-
-    http.privateHTTP.post(url, payload, config).then((response) => {
-      message.success(response)
-      callback()
-      handleClose()
-    }).catch((error) => {
-      console.log(error)
-      message.error(error)
-    })
-  }
+    http.privateHTTP
+      .post(url, payload, config)
+      .then((response) => {
+        message.success(response);
+        callback();
+        handleClose();
+      })
+      .catch((error) => {
+        console.log(error);
+        message.error(error);
+      });
+  };
 
   const onItemRemove = (potongan) => {
     const temps = potongans.filter((value) => value._id !== potongan._id);
     daftarPotongans(temps);
-  }
+  };
 
   const onItemRemovee = (karyawan) => {
     const temps = karyawans.filter((value) => value._id !== karyawan._id);
     setdaftarKaryawans(temps);
-  }
+  };
 
   return (
     <>
       <Button onClick={handleShow}>Penggajian</Button>
 
-      <Modal show={show} onHide={handleClose} size={"xl"} backdrop={"static"} scrollable={true}>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        size={"xl"}
+        backdrop={"static"}
+        scrollable={true}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Penggajian</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
           <Form.Group className={"mb-3"}>
             <Form.Label>Periode</Form.Label>
             <Form.Control
@@ -114,11 +121,7 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
               value={penggajian.periodeGajiBulan}
               name={"periodeGajiBulan"}
               onChange={(e) =>
-                changeListener.onChangeText(
-                  e,
-                  penggajian,
-                  setPenggajian
-                )
+                changeListener.onChangeText(e, penggajian, setPenggajian)
               }
             />
           </Form.Group>
@@ -140,24 +143,22 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
                   <tr>
                     <td>{karyawan.nik}</td>
                     <td>{karyawan.nama}</td>
-                    
                   </tr>
                 </tbody>
-                
               </Table>
             </Col>
-          </Row> 
+          </Row>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={onPenggajianCreate}>Simpan</Button>
         </Modal.Footer>
       </Modal>
     </>
-  )
-}
+  );
+};
 
 WidgetPenggajianCreateModal.propTypes = {
-  callback: PropTypes.func
-}
+  callback: PropTypes.func,
+};
 
 export default WidgetPenggajianCreateModal;

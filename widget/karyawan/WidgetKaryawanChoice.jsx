@@ -12,9 +12,7 @@ const WidgetKaryawanChoice = ({ callback }) => {
   const message = useMessage();
 
   const [daftarKaryawan, setDaftarKaryawan] = useState([]);
-  const [daftarKaryawanPagination, setDaftarKaryawanPagination] = useState(
-    {}
-  );
+  const [daftarKaryawanPagination, setDaftarKaryawanPagination] = useState({});
   const karyawanSearch = useRef({ value: "" });
 
   const onKaryawanList = (params) => {
