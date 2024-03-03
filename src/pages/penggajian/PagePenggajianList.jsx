@@ -55,7 +55,36 @@ const PagePenggajianList = () => {
       currency: "IDR",
     }).format(num);
   };
-
+const TampilanBulan=(bulan)=>{
+  switch (bulan) {
+    case 1:
+      return "Januari";
+    case 2:
+      return "Februari";
+    case 3:
+      return "Maret";
+    case 4:
+      return "April";
+    case 5:
+      return "Mei";
+    case 6:
+      return "Juni";
+    case 7:
+      return "Juli";
+    case 8:
+      return "Agustus";
+    case 9:
+      return "September";
+    case 10:
+      return "Oktober";
+    case 11:
+      return "November";
+    case 12:
+      return "Desember";
+    default:
+      return ""; 
+  }
+}
   const onPenggajianSearch = (e) => {
     if (e.key == "Enter") {
       onPenggajianList({ search: penggajianSearch.current.value });
@@ -65,10 +94,6 @@ const PagePenggajianList = () => {
   const onPenggajianPagination = (page) => {
     onPenggajianList({ search: penggajianSearch.current.value, page });
   };
-
-  // const onPenggajianPrint = useEffect(() => {
-  //   onPenggajianList();
-  // }, []);
 
   useEffect(() => {
     onPenggajianList();
@@ -110,6 +135,7 @@ const PagePenggajianList = () => {
                 <thead>
                   <tr>
                     <th>ID</th>
+                    <th>Bulan</th>
                     <th>NIK</th>
                     <th>Nama</th>
                     <th>Jabatan</th>
@@ -122,6 +148,7 @@ const PagePenggajianList = () => {
                   {daftarPenggajian.map((value) => (
                     <tr key={value._id}>
                       <td>{value._id}</td>
+                      <td>{TampilanBulan(value.periodeGajiBulan)}</td>
                       <td>{value.karyawanref.nik}</td>
                       <td>{value.karyawanref.nama}</td>
                       <td>{value.karyawanref.jabatan.nama}</td>

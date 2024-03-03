@@ -111,9 +111,6 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
       .post(url, payload, config)
       .then((response) => {
         message.success(response);
-        // message.confirm("Cetak Struk", 'Apakah ingin mencetak struk', () => {
-        //   navigate('/terima/print', {state: response.data})
-        // })
         callback();
         handleClose();
       })
@@ -197,16 +194,7 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
               }
             />
           </Form.Group>
-          {/* <Form.Group className={"mb-3"}>
-            <Form.Label>Departemen</Form.Label>
-            <Form.Control
-              name={"nama"}
-              value={departemen.nama}
-              onChange={(e) =>
-                changeListener.onChangeText(e, departemen, setDepartemen)
-              }
-            />
-          </Form.Group> */}
+          
           <Row>
             <Col md={4} className="mb-3">
               <Form.Group className={"mb-3"}>
@@ -276,7 +264,6 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
               <WidgetDepartemenChoice callback={onCallbackDepartemenChoice} />
             </Col>
             <Col md={6}>
-              {/* {JSON.stringify(departemen)} */}
               <Table striped={true} bordered={true} responsive={true}>
                 <thead>
                   <tr>
@@ -291,26 +278,11 @@ const WidgetKaryawanCreateModal = ({ callback }) => {
               </Table>
             </Col>
           </Row>
-          {/* <Row>
-            <Col md={6}>
-              <Form.Group className={"mb-3"}>
-                <Form.Label>Departemen</Form.Label>
-                <Form.Control
-                  name={"departemen"}
-                  value={departemen.nama}
-                  onChange={(e) =>
-                    changeListener.onChangeText(e, departemen, setDepartemen)
-                  }
-                />
-              </Form.Group>
-            </Col>
-          </Row> */}
           <Row className="mb-3">
             <Col md={6}>
               <WidgetJabatanChoice callback={onCallbackJabatanChoice} />
             </Col>
             <Col md={6}>
-              {/* {JSON.stringify(jabatan)} */}
               <Table striped={true} bordered={true} responsive={true}>
                 <thead>
                   <tr>

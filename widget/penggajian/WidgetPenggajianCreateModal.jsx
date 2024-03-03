@@ -23,15 +23,6 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
   const message = useMessage();
   const changeListener = useChangeListener();
 
-  // const [karyawan, setKaryawan] = useState({
-  //   nik: "",
-  //   nama: "",
-  //   alamat: "",
-  //   no_Telepon: "",
-  //   bank: "",
-  //   no_rekening: "",
-  // })
-
   const [penggajian, setPenggajian] = useState({
     karyawanref: "",
     periodeGajiBulan: "",
