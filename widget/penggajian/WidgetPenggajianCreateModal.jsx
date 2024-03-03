@@ -35,7 +35,6 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
     bank: "",
     no_rekening: "",
   })
-  const [karyawans, setdaftarKaryawans] = useState([])
 
   const onCallbackKaryawanChoice = (selectedKaryawan) => {
     setKaryawan(selectedKaryawan);
@@ -55,7 +54,6 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
     const payload = {
       ...penggajian,
       karyawan,
-
     }
 
     http.privateHTTP.post(url, payload, config).then((response) => {
@@ -68,10 +66,6 @@ const WidgetPenggajianCreateModal = ({ callback }) => {
     })
   }
 
-  const onItemRemovee = (karyawan) => {
-    const temps = karyawans.filter((value) => value._id !== karyawan._id);
-    setdaftarKaryawans(temps);
-  }
 
   return (
     <>
