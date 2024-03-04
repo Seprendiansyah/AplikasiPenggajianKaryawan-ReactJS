@@ -101,6 +101,7 @@ const PageJabatanList = () => {
                 <thead>
                   <tr>
                     <th>ID</th>
+                    <th>Nama Jabatan</th>
                     <th>Gaji Pokok</th>
                     <th>Tunjangan</th>
                   </tr>
